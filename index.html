@@ -1,0 +1,2341 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IronLink | Infraestructura Digital para PYMES</title>
+  <meta name="description"
+    content="IronLink es el departamento de TI externo y amigable para tu PYME. Asesoría, creación y mantenimiento de infraestructura digital segura, robusta y accesible" />
+  <meta name="keywords"
+    content="infraestructura digital, PYMES, asesoría tecnológica, mantenimiento de redes, seguridad informática, TI externo" />
+  <meta name="author" content="IronLink" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://ironlink.mx/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="IronLink | Infraestructura Digital para PYMES" />
+  <meta property="og:description"
+    content="El departamento de TI externo y amigable para tu PYME. Asesoría, instalación y mantenimiento de infraestructura digital" />
+  <meta property="og:url" content="https://ironlink.mx/" />
+  <meta property="og:locale" content="es_MX" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="IronLink | Infraestructura Digital para PYMES" />
+  <meta name="twitter:description"
+    content="El departamento de TI externo y amigable para tu PYME. Asesoría, instalación y mantenimiento de infraestructura digital." />
+
+  <!-- Favicon (inline SVG) -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230d1117'/%3E%3Cpath d='M16 4l10 5v6c0 5.5-4 9-10 10-6-1-10-4.5-10-10V9l10-5z' fill='%2319AED8' opacity='0.9'/%3E%3Cpath d='M11 16l2.5 2.5L21 12' fill='none' stroke='%230d1117' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <style>
+    /* ══════════════════════════════════════════════
+       DESIGN TOKENS & RESET
+    ══════════════════════════════════════════════ */
+    :root {
+      --c-bg: #07090f;
+      --c-surface: #0d1117;
+      --c-surface2: #111827;
+      --c-border: rgba(255, 255, 255, 0.07);
+      --c-border2: rgba(25, 174, 216, 0.18);
+
+      --c-accent: #19AED8;
+      --c-accent2: #1598C0;
+      --c-accent3: #4BC4E8;
+      --c-glow: rgba(25, 174, 216, 0.35);
+      --c-glow2: rgba(25, 174, 216, 0.12);
+
+      --c-white: #ffffff;
+      --c-gray-100: #f0f4f8;
+      --c-gray-300: #94a3b8;
+      --c-gray-500: #64748b;
+      --c-gray-700: #1e293b;
+
+      --gradient-hero: linear-gradient(135deg, #07090f 0%, #0a1628 50%, #071320 100%);
+      --gradient-card: linear-gradient(145deg, #0d1117 0%, #111827 100%);
+      --gradient-accent: linear-gradient(90deg, #19AED8, #1598C0);
+      --gradient-cta: linear-gradient(135deg, #0a1628 0%, #071320 100%);
+
+      --r-sm: 8px;
+      --r-md: 14px;
+      --r-lg: 20px;
+      --r-xl: 28px;
+
+      --shadow-glow: 0 0 40px rgba(25, 174, 216, 0.2), 0 0 80px rgba(25, 174, 216, 0.08);
+      --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 255, 255, 0.05) inset;
+      --shadow-btn: 0 0 20px rgba(25, 174, 216, 0.4), 0 4px 16px rgba(0, 0, 0, 0.4);
+
+      --font-main: 'Outfit', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--c-bg);
+      color: var(--c-white);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* ══════════════════════════════════════════════
+       SCROLLBAR
+    ══════════════════════════════════════════════ */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--c-bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--c-accent2);
+      border-radius: 3px;
+    }
+
+    /* ══════════════════════════════════════════════
+       UTILITIES
+    ══════════════════════════════════════════════ */
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--c-accent);
+      background: rgba(25, 174, 216, 0.08);
+      border: 1px solid rgba(25, 174, 216, 0.2);
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--c-accent);
+      box-shadow: 0 0 8px var(--c-accent);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.5;
+        transform: scale(0.7);
+      }
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--c-white);
+    }
+
+    .section-title span {
+      background: var(--gradient-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--c-gray-300);
+      max-width: 560px;
+      line-height: 1.75;
+      margin-top: 12px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--gradient-accent);
+      color: var(--c-bg);
+      font-family: var(--font-main);
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 14px 32px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition);
+      box-shadow: var(--shadow-btn);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.15);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .btn-primary:hover::before {
+      opacity: 1;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(25, 174, 216, 0.6), 0 8px 24px rgba(0, 0, 0, 0.5);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      color: var(--c-white);
+      font-family: var(--font-main);
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 13px 30px;
+      border-radius: 100px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--c-accent);
+      color: var(--c-accent);
+      background: rgba(25, 174, 216, 0.06);
+      transform: translateY(-2px);
+    }
+
+    /* Reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 {
+      transition-delay: 0.1s;
+    }
+
+    .reveal-delay-2 {
+      transition-delay: 0.2s;
+    }
+
+    .reveal-delay-3 {
+      transition-delay: 0.3s;
+    }
+
+    .reveal-delay-4 {
+      transition-delay: 0.4s;
+    }
+
+    /* ══════════════════════════════════════════════
+       NAVBAR
+    ══════════════════════════════════════════════ */
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 18px 0;
+      transition: var(--transition);
+    }
+
+    #navbar.scrolled {
+      background: rgba(7, 9, 15, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--c-border);
+      padding: 12px 0;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-logo-icon {
+      height: 44px;
+      width: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-logo-icon img {
+      height: 44px;
+      width: auto;
+      border-radius: 10px;
+      display: block;
+      filter: drop-shadow(0 0 8px rgba(25, 174, 216, 0.4));
+    }
+
+    .nav-logo-text {
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-logo-text .iron {
+      color: var(--c-white);
+    }
+
+    .nav-logo-text .link-word {
+      color: var(--c-accent);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--c-gray-300);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--c-white);
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--c-white);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    /* ══════════════════════════════════════════════
+       HERO SECTION
+    ══════════════════════════════════════════════ */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--gradient-hero);
+      padding: 120px 0 80px;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('hero_bg_tech.png');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.25;
+      z-index: 0;
+    }
+
+    /* Animated grid */
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(25, 174, 216, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(25, 174, 216, 0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      z-index: 1;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+    }
+
+    /* Floating orbs */
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      animation: float-orb 8s ease-in-out infinite;
+      z-index: 1;
+    }
+
+    .hero-orb-1 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(25, 174, 216, 0.12) 0%, transparent 70%);
+      top: -150px;
+      right: -100px;
+      animation-delay: 0s;
+    }
+
+    .hero-orb-2 {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(14, 165, 233, 0.1) 0%, transparent 70%);
+      bottom: 50px;
+      left: -80px;
+      animation-delay: 3s;
+    }
+
+    @keyframes float-orb {
+
+      0%,
+      100% {
+        transform: translateY(0) scale(1);
+      }
+
+      50% {
+        transform: translateY(-30px) scale(1.05);
+      }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      flex: 0 0 55%;
+      max-width: 55%;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(25, 174, 216, 0.08);
+      border: 1px solid rgba(25, 174, 216, 0.25);
+      color: var(--c-accent);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 7px 16px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+      animation: fade-in-up 0.8s ease both;
+    }
+
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--c-accent);
+      box-shadow: 0 0 10px var(--c-accent);
+      animation: pulse-dot 2s ease infinite;
+    }
+
+    .hero-title {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+      animation: fade-in-up 0.8s 0.15s ease both;
+    }
+
+    .hero-title .accent-line {
+      display: block;
+      background: linear-gradient(90deg, #19AED8 0%, #4BC4E8 50%, #7DD3FC 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--c-gray-300);
+      max-width: 580px;
+      line-height: 1.75;
+      margin-bottom: 40px;
+      animation: fade-in-up 0.8s 0.3s ease both;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      animation: fade-in-up 0.8s 0.45s ease both;
+    }
+
+    .hero-trust {
+      margin-top: 60px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      animation: fade-in-up 0.8s 0.6s ease both;
+    }
+
+    .hero-trust-divider {
+      width: 1px;
+      height: 36px;
+      background: var(--c-border);
+    }
+
+    .hero-stat {
+      text-align: left;
+    }
+
+    .hero-stat-value {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--c-accent);
+      line-height: 1;
+    }
+
+    .hero-stat-label {
+      font-size: 0.75rem;
+      color: var(--c-gray-500);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Floating device mockup */
+    .hero-visual {
+      position: relative;
+      z-index: 2;
+      flex: 0 0 45%;
+      max-width: 45%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-device {
+      background: var(--gradient-card);
+      border: 1px solid var(--c-border2);
+      border-radius: var(--r-xl);
+      padding: 24px;
+      width: 380px;
+      box-shadow: var(--shadow-glow), var(--shadow-card);
+      animation: float-device 6s ease-in-out infinite;
+      backdrop-filter: blur(10px);
+    }
+
+    @keyframes float-device {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-1deg);
+      }
+
+      50% {
+        transform: translateY(-16px) rotate(1deg);
+      }
+    }
+
+    .device-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--c-border);
+    }
+
+    .device-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .device-dot-red {
+      background: #ff5f57;
+    }
+
+    .device-dot-yellow {
+      background: #ffbd2e;
+    }
+
+    .device-dot-green {
+      background: #28ca41;
+    }
+
+    .device-title {
+      margin-left: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--c-gray-500);
+    }
+
+    .device-metric {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .device-metric:last-child {
+      border-bottom: none;
+    }
+
+    .metric-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: var(--c-gray-300);
+    }
+
+    .metric-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: rgba(25, 174, 216, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .metric-icon svg {
+      width: 16px;
+      height: 16px;
+      color: var(--c-accent);
+    }
+
+    .metric-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+    }
+
+    .status-ok {
+      background: #22c55e;
+      box-shadow: 0 0 8px #22c55e;
+    }
+
+    .status-ok-text {
+      color: #22c55e;
+    }
+
+    .status-warn {
+      background: #f59e0b;
+      box-shadow: 0 0 8px #f59e0b;
+    }
+
+    .status-warn-text {
+      color: #f59e0b;
+    }
+
+    .device-progress-bar {
+      height: 4px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 2px;
+      margin-top: 4px;
+      overflow: hidden;
+    }
+
+    .device-progress-fill {
+      height: 100%;
+      background: var(--gradient-accent);
+      border-radius: 2px;
+      animation: progress-fill 2s 1s ease both;
+    }
+
+    @keyframes progress-fill {
+      from {
+        width: 0%;
+      }
+    }
+
+    @keyframes fade-in-up {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ══════════════════════════════════════════════
+       SECTION DIVIDER
+    ══════════════════════════════════════════════ */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--c-border2), transparent);
+      margin: 0;
+    }
+
+    /* ══════════════════════════════════════════════
+       BENEFITS SECTION
+    ══════════════════════════════════════════════ */
+    #benefits {
+      padding: 100px 0;
+      background: var(--c-surface);
+      position: relative;
+    }
+
+    #benefits::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--c-border2), transparent);
+    }
+
+    .benefits-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .benefit-card {
+      background: var(--gradient-card);
+      border: 1px solid var(--c-border);
+      border-radius: var(--r-lg);
+      padding: 36px 30px;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+      box-shadow: var(--shadow-card);
+      cursor: default;
+    }
+
+    .benefit-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: var(--c-glow2);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .benefit-card:hover {
+      border-color: var(--c-border2);
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-glow), var(--shadow-card);
+    }
+
+    .benefit-card:hover::before {
+      opacity: 1;
+    }
+
+    .benefit-card-accent {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient-accent);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .benefit-card:hover .benefit-card-accent {
+      opacity: 1;
+    }
+
+    .benefit-icon-wrap {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--r-md);
+      background: rgba(25, 174, 216, 0.08);
+      border: 1px solid rgba(25, 174, 216, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      transition: var(--transition);
+    }
+
+    .benefit-card:hover .benefit-icon-wrap {
+      background: rgba(25, 174, 216, 0.15);
+      border-color: rgba(25, 174, 216, 0.35);
+      box-shadow: 0 0 20px rgba(25, 174, 216, 0.2);
+    }
+
+    .benefit-icon-wrap svg {
+      width: 26px;
+      height: 26px;
+      color: var(--c-accent);
+    }
+
+    .benefit-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .benefit-desc {
+      font-size: 0.9rem;
+      color: var(--c-gray-300);
+      line-height: 1.7;
+    }
+
+    .benefit-tag {
+      display: inline-block;
+      margin-top: 18px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--c-accent);
+      opacity: 0.7;
+    }
+
+    /* ══════════════════════════════════════════════
+       SERVICES SECTION
+    ══════════════════════════════════════════════ */
+    #services {
+      padding: 100px 0;
+      background: var(--c-bg);
+      position: relative;
+    }
+
+    .services-header {
+      margin-bottom: 64px;
+    }
+
+    .services-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .services-left {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .service-card {
+      background: var(--gradient-card);
+      border: 1px solid var(--c-border);
+      border-radius: var(--r-lg);
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .service-card::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--gradient-accent);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .service-card:hover {
+      border-color: var(--c-border2);
+      transform: translateX(6px);
+    }
+
+    .service-card:hover::after {
+      opacity: 1;
+    }
+
+    .service-card.active {
+      border-color: rgba(25, 174, 216, 0.3);
+      background: linear-gradient(145deg, #0d1117 0%, #0f1a2e 100%);
+    }
+
+    .service-card.active::after {
+      opacity: 1;
+    }
+
+    .service-num {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--c-accent);
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+      opacity: 0.7;
+    }
+
+    .service-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .service-desc {
+      font-size: 0.88rem;
+      color: var(--c-gray-300);
+      line-height: 1.7;
+    }
+
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .service-tag {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--c-accent3);
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.15);
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+
+    .services-right {
+      position: sticky;
+      top: 100px;
+    }
+
+    .services-visual {
+      background: var(--gradient-card);
+      border: 1px solid var(--c-border2);
+      border-radius: var(--r-xl);
+      padding: 40px;
+      box-shadow: var(--shadow-glow), var(--shadow-card);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .services-visual::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(25, 174, 216, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .sv-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: var(--r-md);
+      background: rgba(25, 174, 216, 0.1);
+      border: 1px solid rgba(25, 174, 216, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .sv-icon svg {
+      width: 32px;
+      height: 32px;
+      color: var(--c-accent);
+    }
+
+    .sv-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+
+    .sv-desc {
+      font-size: 0.9rem;
+      color: var(--c-gray-300);
+      line-height: 1.75;
+      margin-bottom: 28px;
+    }
+
+    .sv-feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .sv-feature {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.88rem;
+      color: var(--c-gray-300);
+    }
+
+    .sv-feature-check {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .sv-feature-check svg {
+      width: 11px;
+      height: 11px;
+      color: #22c55e;
+    }
+
+    /* ══════════════════════════════════════════════
+       PROBLEM / SOLUTION SECTION (EMPATHY)
+    ══════════════════════════════════════════════ */
+    #empathy {
+      padding: 100px 0;
+      background: var(--c-surface);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #empathy::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--c-border2), transparent);
+    }
+
+    .empathy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 64px;
+    }
+
+    .empathy-col {
+      background: var(--gradient-card);
+      border-radius: var(--r-xl);
+      padding: 44px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .col-problem {
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+
+    .col-problem::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #ef4444, #dc2626);
+    }
+
+    .col-solution {
+      border: 1px solid rgba(25, 174, 216, 0.2);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .col-solution::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient-accent);
+    }
+
+    .col-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+    }
+
+    .badge-problem {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      color: #f87171;
+    }
+
+    .badge-solution {
+      background: rgba(25, 174, 216, 0.08);
+      border: 1px solid rgba(25, 174, 216, 0.2);
+      color: var(--c-accent);
+    }
+
+    .empathy-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .empathy-desc {
+      font-size: 0.9rem;
+      color: var(--c-gray-300);
+      line-height: 1.8;
+      margin-bottom: 28px;
+    }
+
+    .pain-list,
+    .gain-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .pain-item,
+    .gain-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.875rem;
+      color: var(--c-gray-300);
+      line-height: 1.6;
+    }
+
+    .pain-icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      margin-top: 1px;
+      color: #f87171;
+    }
+
+    .gain-icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      margin-top: 1px;
+      color: var(--c-accent);
+    }
+
+    .vs-divider {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--c-surface2);
+      border: 2px solid var(--c-border2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--c-accent);
+      box-shadow: 0 0 20px rgba(25, 174, 216, 0.2);
+      z-index: 10;
+    }
+
+    /* ══════════════════════════════════════════════
+       FINAL CTA SECTION
+    ══════════════════════════════════════════════ */
+    #cta-final {
+      padding: 100px 0;
+      background: var(--c-bg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-wrapper {
+      background: linear-gradient(135deg, #0a1628 0%, #071320 50%, #0a1220 100%);
+      border: 1px solid rgba(25, 174, 216, 0.15);
+      border-radius: var(--r-xl);
+      padding: 80px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 80px rgba(25, 174, 216, 0.08), 0 24px 48px rgba(0, 0, 0, 0.5);
+    }
+
+    .cta-orb-1,
+    .cta-orb-2 {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      pointer-events: none;
+    }
+
+    .cta-orb-1 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(25, 174, 216, 0.08) 0%, transparent 70%);
+      top: -100px;
+      left: -100px;
+    }
+
+    .cta-orb-2 {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.06) 0%, transparent 70%);
+      bottom: -80px;
+      right: -80px;
+    }
+
+    .cta-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--c-accent), transparent);
+    }
+
+    .cta-inner {
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--c-accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .cta-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .cta-title span {
+      background: var(--gradient-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .cta-subtitle {
+      font-size: 1rem;
+      color: var(--c-gray-300);
+      max-width: 480px;
+      margin: 0 auto 40px;
+      line-height: 1.75;
+    }
+
+    .cta-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+
+    .cta-note {
+      font-size: 0.8rem;
+      color: var(--c-gray-500);
+    }
+
+    .cta-note span {
+      color: #22c55e;
+      font-weight: 600;
+    }
+
+    /* ── Contact Form ── */
+    .contact-form {
+      max-width: 520px;
+      margin: 0 auto 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .contact-form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      font-family: var(--font-main);
+      font-size: 0.9rem;
+      color: var(--c-white);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--r-md);
+      padding: 14px 18px;
+      outline: none;
+      transition: var(--transition);
+      width: 100%;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--c-accent);
+      background: rgba(25, 174, 216, 0.06);
+      box-shadow: 0 0 0 3px rgba(25, 174, 216, 0.1);
+    }
+
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder {
+      color: var(--c-gray-500);
+    }
+
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .contact-form .btn-primary {
+      align-self: flex-start;
+    }
+
+    .contact-form .form-feedback {
+      font-size: 0.85rem;
+      padding: 10px 16px;
+      border-radius: var(--r-sm);
+      display: none;
+    }
+
+    .contact-form .form-feedback.success {
+      display: block;
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      color: #4ade80;
+    }
+
+    .contact-form .form-feedback.error {
+      display: block;
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #f87171;
+    }
+
+    @media (max-width: 480px) {
+      .contact-form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ══════════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════════ */
+    #footer {
+      background: var(--c-surface);
+      border-top: 1px solid var(--c-border);
+      padding: 48px 0 32px;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-brand {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .footer-brand .iron {
+      color: var(--c-white);
+    }
+
+    .footer-brand .link-word {
+      color: var(--c-accent);
+    }
+
+    .footer-tagline {
+      font-size: 0.8rem;
+      color: var(--c-gray-500);
+      margin-top: 4px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 0.85rem;
+      color: var(--c-gray-500);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--c-accent);
+    }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      color: var(--c-gray-500);
+      text-align: center;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--c-border);
+    }
+
+    .footer-copy span {
+      color: var(--c-accent);
+    }
+
+    /* ══════════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════════ */
+    @media (max-width: 900px) {
+      .hero-visual {
+        display: none;
+      }
+
+      .hero-content {
+        max-width: 100%;
+        flex: 1 1 100%;
+      }
+
+      .services-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .services-right {
+        position: relative;
+        top: 0;
+      }
+
+      .empathy-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .vs-divider {
+        display: none;
+      }
+
+      .nav-links,
+      .nav-cta {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero-trust {
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .benefits-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-wrapper {
+        padding: 48px 28px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(7, 9, 15, 0.98);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--c-white);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .mobile-menu a:hover {
+      color: var(--c-accent);
+    }
+
+    .mobile-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: none;
+      border: none;
+      color: var(--c-white);
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══ MOBILE MENU ══ -->
+  <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+    <button class="mobile-close" id="menuClose" aria-label="Cerrar menú">✕</button>
+    <a href="#benefits" onclick="closeMobileMenu()">Beneficios</a>
+    <a href="#services" onclick="closeMobileMenu()">Servicios</a>
+    <a href="#empathy" onclick="closeMobileMenu()">Nosotros</a>
+    <a href="#cta-final" onclick="closeMobileMenu()" style="color:var(--c-accent)">Asesoría Gratis</a>
+  </div>
+
+  <!-- ══ NAVBAR ══ -->
+  <nav id="navbar" aria-label="Navegación principal">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#hero" class="nav-logo" aria-label="IronLink inicio">
+          <div class="nav-logo-icon" aria-hidden="true">
+            <img src="ironlink.png.jpeg" alt="IronLink logo" loading="lazy" />
+          </div>
+          <span class="nav-logo-text">
+            <span class="iron">Iron</span><span class="link-word">Link</span>
+          </span>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#benefits">Beneficios</a></li>
+          <li><a href="#services">Servicios</a></li>
+          <li><a href="#empathy">Nosotros</a></li>
+        </ul>
+
+        <div class="nav-cta">
+          <a href="#cta-final" class="btn-primary" id="nav-cta-btn" style="padding:10px 22px;font-size:0.85rem;">
+            Asesoría Gratis
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+
+        <button class="hamburger" id="menuOpen" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ══ SECTION 1: HERO ══ -->
+  <section id="hero" aria-labelledby="hero-title">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-orb hero-orb-1" aria-hidden="true"></div>
+    <div class="hero-orb hero-orb-2" aria-hidden="true"></div>
+
+    <div class="container" style="position:relative;z-index:2;display:flex;align-items:center;gap:40px;">
+      <div class="hero-content">
+        <div class="hero-badge" role="doc-subtitle">
+          <span class="hero-badge-dot" aria-hidden="true"></span>
+          TI Externo · 100% enfocado en PYMES
+        </div>
+
+        <h1 class="hero-title" id="hero-title">
+          La Fuerza del Hierro,<br />
+          <span class="accent-line">la Agilidad del Futuro.</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Tu <strong style="color:var(--c-white)">departamento de TI externo y amigable</strong>: asesoría, instalación
+          y mantenimiento de infraestructura digital para que tu PYME crezca segura, rápida y sin preocupaciones.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#cta-final" class="btn-primary" id="hero-cta-main">
+            Asegura tu infraestructura hoy
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+          <a href="#services" class="btn-secondary" id="hero-cta-secondary">
+            Ver servicios
+          </a>
+        </div>
+
+        <div class="hero-trust" aria-label="Estadísticas de confianza">
+          <div class="hero-stat">
+            <div class="hero-stat-value">100%</div>
+            <div class="hero-stat-label">Enfoque en PYMES</div>
+          </div>
+          <div class="hero-trust-divider" aria-hidden="true"></div>
+          <div class="hero-stat">
+            <div class="hero-stat-value">24/7</div>
+            <div class="hero-stat-label">Soporte disponible</div>
+          </div>
+          <div class="hero-trust-divider" aria-hidden="true"></div>
+          <div class="hero-stat">
+            <div class="hero-stat-value">3 en 1</div>
+            <div class="hero-stat-label">Asesoría · Instalación · Mantenimiento</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating Dashboard Mockup -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-device">
+          <div class="device-header">
+            <div class="device-dot device-dot-red"></div>
+            <div class="device-dot device-dot-yellow"></div>
+            <div class="device-dot device-dot-green"></div>
+            <span class="device-title">IronLink · Panel de Infraestructura</span>
+          </div>
+
+          <div class="device-metric">
+            <div class="metric-label">
+              <div class="metric-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                  <path d="M2 12l10 5 10-5" />
+                </svg>
+              </div>
+              Red Principal
+            </div>
+            <div class="metric-status">
+              <div class="status-dot status-ok"></div>
+              <span class="status-ok-text">Operativo</span>
+            </div>
+          </div>
+
+          <div class="device-metric">
+            <div class="metric-label">
+              <div class="metric-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <path d="M9 9h6M9 12h6M9 15h4" />
+                </svg>
+              </div>
+              Seguridad Firewall
+            </div>
+            <div class="metric-status">
+              <div class="status-dot status-ok"></div>
+              <span class="status-ok-text">Protegido</span>
+            </div>
+          </div>
+
+          <div class="device-metric">
+            <div class="metric-label">
+              <div class="metric-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg>
+              </div>
+              Backup en la Nube
+            </div>
+            <div class="metric-status">
+              <div class="status-dot status-ok"></div>
+              <span class="status-ok-text">Al día</span>
+            </div>
+          </div>
+
+          <div class="device-metric">
+            <div class="metric-label">
+              <div class="metric-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                </svg>
+              </div>
+              Rendimiento de Red
+            </div>
+            <div style="font-size:0.78rem;color:var(--c-accent);font-family:var(--font-mono);">97%</div>
+          </div>
+          <div class="device-progress-bar">
+            <div class="device-progress-fill" style="width:97%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider" aria-hidden="true"></div>
+
+  <!-- ══ SECTION 2: BENEFITS ══ -->
+  <section id="benefits" aria-labelledby="benefits-title">
+    <div class="container">
+      <div class="benefits-header">
+        <div class="section-label">¿Por qué IronLink?</div>
+        <h2 class="section-title" id="benefits-title">
+          Construido para que <span>tu negocio no se detenga</span>
+        </h2>
+        <p class="section-subtitle">
+          Combinamos la robustez industrial del hierro con la conectividad del mundo digital para ofrecerte una
+          propuesta única, accesible y honesta.
+        </p>
+      </div>
+
+      <div class="benefits-grid">
+
+        <!-- Card 1 -->
+        <div class="benefit-card reveal" aria-label="Robustez y Protección">
+          <div class="benefit-card-accent" aria-hidden="true"></div>
+          <div class="benefit-icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+          <h3 class="benefit-title">Robustez y Protección</h3>
+          <p class="benefit-desc">Infraestructura diseñada como el hierro: sólida, resistente y preparada para las
+            amenazas digitales actuales. Tu negocio, blindado.</p>
+          <span class="benefit-tag">Iron ·&nbsp; Fuerza y Durabilidad</span>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="benefit-card reveal reveal-delay-1" aria-label="Conectividad y Futuro">
+          <div class="benefit-card-accent" aria-hidden="true"></div>
+          <div class="benefit-icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path
+                d="M1.05 12A11 11 0 0122.95 12M5 12a7 7 0 0014 0M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32" />
+            </svg>
+          </div>
+          <h3 class="benefit-title">Conectividad y Futuro</h3>
+          <p class="benefit-desc">Redes ágiles, colaborativas y escalables que preparan a tu PYME para crecer sin
+            límites. El enlace que conecta tu negocio con la oportunidad.</p>
+          <span class="benefit-tag">Link ·&nbsp; Agilidad Digital</span>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="benefit-card reveal reveal-delay-2" aria-label="Precios accesibles para PYMES">
+          <div class="benefit-card-accent" aria-hidden="true"></div>
+          <div class="benefit-icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <line x1="12" y1="1" x2="12" y2="23" />
+              <path d="M17 5H9.5a3.5 3.5 0 100 7h5a3.5 3.5 0 110 7H6" />
+            </svg>
+          </div>
+          <h3 class="benefit-title">Precios Accesibles</h3>
+          <p class="benefit-desc">Sin letra pequeña ni costos de empresa grande. Planes pensados para el presupuesto
+            real de una PYME, con la calidad que mereces.</p>
+          <span class="benefit-tag">Pymes first ·&nbsp; Siempre</span>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="benefit-card reveal reveal-delay-3" aria-label="Soporte amigable y cercano">
+          <div class="benefit-card-accent" aria-hidden="true"></div>
+          <div class="benefit-icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+            </svg>
+          </div>
+          <h3 class="benefit-title">Soporte Amigable y Cercano</h3>
+          <p class="benefit-desc">Sin tecnicismos, sin esperas eternas. Hablamos tu idioma y resolvemos tus problemas
+            como si fuéramos parte de tu equipo.</p>
+          <span class="benefit-tag">Humano ·&nbsp; Siempre disponible</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider" aria-hidden="true"></div>
+
+  <!-- ══ SECTION 3: SERVICES ══ -->
+  <section id="services" aria-labelledby="services-title">
+    <div class="container">
+      <div class="services-header">
+        <div class="section-label">Nuestros Servicios</div>
+        <h2 class="section-title" id="services-title">
+          Todo lo que tu PYME necesita,<br /><span>en un solo lugar</span>
+        </h2>
+        <p class="section-subtitle">
+          Desde la primera consulta hasta el mantenimiento continuo, somos tu aliado tecnológico de confianza.
+        </p>
+      </div>
+
+      <div class="services-layout">
+        <!-- Left: Service cards -->
+        <div class="services-left">
+
+          <div class="service-card reveal active" id="svc-1" tabindex="0" role="button" aria-pressed="true"
+            onclick="selectService(1)" onkeydown="if(event.key==='Enter')selectService(1)">
+            <div class="service-num">01 / SERVICIO</div>
+            <h3 class="service-title">Asesoría y Consultoría Tecnológica</h3>
+            <p class="service-desc">Te acompañamos desde el diagnóstico hasta la estrategia. Analizamos tu negocio,
+              identificamos riesgos y oportunidades, y diseñamos un plan tecnológico a tu medida.</p>
+            <div class="service-tags">
+              <span class="service-tag">Diagnóstico Digital</span>
+              <span class="service-tag">Planificación IT</span>
+              <span class="service-tag">Seguridad</span>
+              <span class="service-tag">Optimización</span>
+            </div>
+          </div>
+
+          <div class="service-card reveal reveal-delay-1" id="svc-2" tabindex="0" role="button" aria-pressed="false"
+            onclick="selectService(2)" onkeydown="if(event.key==='Enter')selectService(2)">
+            <div class="service-num">02 / SERVICIO</div>
+            <h3 class="service-title">Creación e Instalación de Infraestructura Digital</h3>
+            <p class="service-desc">Diseñamos e implementamos redes, sistemas y entornos tecnológicos desde cero.
+              Configuración profesional, limpia y escalable para que tu empresa esté lista para crecer.</p>
+            <div class="service-tags">
+              <span class="service-tag">Redes LAN / WAN</span>
+              <span class="service-tag">Servidores</span>
+              <span class="service-tag">Cloud</span>
+              <span class="service-tag">VPN</span>
+            </div>
+          </div>
+
+          <div class="service-card reveal reveal-delay-2" id="svc-3" tabindex="0" role="button" aria-pressed="false"
+            onclick="selectService(3)" onkeydown="if(event.key==='Enter')selectService(3)">
+            <div class="service-num">03 / SERVICIO</div>
+            <h3 class="service-title">Mantenimiento Preventivo y Correctivo</h3>
+            <p class="service-desc">Monitoreamos, actualizamos y solucionamos. Prevenimos fallos antes de que ocurran y
+              respondemos con rapidez cuando algo no está bien. Tu operación, siempre en pie.</p>
+            <div class="service-tags">
+              <span class="service-tag">Monitoreo 24/7</span>
+              <span class="service-tag">Actualizaciones</span>
+              <span class="service-tag">Soporte Remoto</span>
+              <span class="service-tag">Backups</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right: Dynamic detail panel -->
+        <div class="services-right reveal reveal-delay-2">
+          <div class="services-visual" id="services-visual-panel">
+            <div class="sv-icon" id="sv-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 8v4l3 3" />
+              </svg>
+            </div>
+            <div class="sv-title" id="sv-title">Asesoría y Consultoría Tecnológica</div>
+            <div class="sv-desc" id="sv-desc">Entendemos tu negocio antes de recomendar cualquier solución. Con IronLink
+              obtienes un diagnóstico honesto, un plan claro y un acompañamiento real — sin promesas vacías.</div>
+            <ul class="sv-feature-list" id="sv-features">
+              <li class="sv-feature">
+                <span class="sv-feature-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="3">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span>
+                Diagnóstico gratuito inicial
+              </li>
+              <li class="sv-feature">
+                <span class="sv-feature-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="3">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span>
+                Análisis de riesgos y vulnerabilidades
+              </li>
+              <li class="sv-feature">
+                <span class="sv-feature-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="3">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span>
+                Hoja de ruta tecnológica personalizada
+              </li>
+              <li class="sv-feature">
+                <span class="sv-feature-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="3">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg></span>
+                Recomendaciones en lenguaje sencillo
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider" aria-hidden="true"></div>
+
+  <!-- ══ SECTION 4: EMPATHY (Problem vs Solution) ══ -->
+  <section id="empathy" aria-labelledby="empathy-title">
+    <div class="container">
+      <div style="text-align:center;">
+        <div class="section-label">Entendemos tu realidad</div>
+        <h2 class="section-title" id="empathy-title">
+          ¿Te suena familiar? <span>Nosotros lo resolvemos.</span>
+        </h2>
+        <p class="section-subtitle" style="margin:0 auto;">
+          Las PYMES merecen la misma tecnología sólida que las grandes empresas, sin la complejidad ni los costos
+          astronómicos.
+        </p>
+      </div>
+
+      <div class="empathy-grid" style="position:relative;">
+
+        <!-- Problem Column -->
+        <div class="empathy-col col-problem reveal">
+          <div class="col-badge badge-problem">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="8" x2="12" y2="12" />
+              <line x1="12" y1="16" x2="12.01" y2="16" />
+            </svg>
+            El Problema
+          </div>
+          <h3 class="empathy-title">Sin TI propio, todo se complica</h3>
+          <p class="empathy-desc">La mayoría de PYMES operan sin apoyo tecnológico profesional. El resultado: sistemas
+            lentos, datos en riesgo y pérdidas de tiempo que cuestan dinero.</p>
+          <ul class="pain-list">
+            <li class="pain-item">
+              <svg class="pain-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="15" y1="9" x2="9" y2="15" />
+                <line x1="9" y1="9" x2="15" y2="15" />
+              </svg>
+              Internet lento que paraliza la operación del negocio
+            </li>
+            <li class="pain-item">
+              <svg class="pain-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="15" y1="9" x2="9" y2="15" />
+                <line x1="9" y1="9" x2="15" y2="15" />
+              </svg>
+              Datos de clientes sin protección ni backups
+            </li>
+            <li class="pain-item">
+              <svg class="pain-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="15" y1="9" x2="9" y2="15" />
+                <line x1="9" y1="9" x2="15" y2="15" />
+              </svg>
+              Técnicos que hablan en idioma marciano y cobran de más
+            </li>
+            <li class="pain-item">
+              <svg class="pain-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="15" y1="9" x2="9" y2="15" />
+                <line x1="9" y1="9" x2="15" y2="15" />
+              </svg>
+              Equipos viejos sin actualizaciones que frenan el crecimiento
+            </li>
+            <li class="pain-item">
+              <svg class="pain-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="15" y1="9" x2="9" y2="15" />
+                <line x1="9" y1="9" x2="15" y2="15" />
+              </svg>
+              Miedo a ataques cibernéticos sin saber cómo prevenirlos
+            </li>
+          </ul>
+        </div>
+
+        <!-- Solution Column -->
+        <div class="empathy-col col-solution reveal reveal-delay-2">
+          <div class="col-badge badge-solution">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            La Solución IronLink
+          </div>
+          <h3 class="empathy-title">Tu equipo de TI, sin el costo de un equipo de TI</h3>
+          <p class="empathy-desc">IronLink actúa como tu departamento tecnológico externo: cercano, claro y
+            comprometido. Resolvemos el presente y blindamos tu futuro.</p>
+          <ul class="gain-list">
+            <li class="gain-item">
+              <svg class="gain-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+              Infraestructura rápida y confiable para que operes sin interrupciones
+            </li>
+            <li class="gain-item">
+              <svg class="gain-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+              Seguridad y backups automáticos para dormir tranquilo
+            </li>
+            <li class="gain-item">
+              <svg class="gain-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+              Comunicación directa, en español simple, sin tecnicismos
+            </li>
+            <li class="gain-item">
+              <svg class="gain-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+              Mantenimiento preventivo que evita problemas antes de que ocurran
+            </li>
+            <li class="gain-item">
+              <svg class="gain-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+              Precios honestos, planes a tu medida, sin sorpresas
+            </li>
+          </ul>
+        </div>
+
+        <div class="vs-divider" aria-hidden="true">VS</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider" aria-hidden="true"></div>
+
+  <!-- ══ SECTION 5: FINAL CTA ══ -->
+  <section id="cta-final" aria-labelledby="cta-title">
+    <div class="container">
+      <div class="cta-wrapper reveal">
+        <div class="cta-orb-1" aria-hidden="true"></div>
+        <div class="cta-orb-2" aria-hidden="true"></div>
+
+        <div class="cta-inner">
+          <div class="cta-label" aria-hidden="true">
+            ⚡ Empieza hoy mismo
+          </div>
+
+          <h2 class="cta-title" id="cta-title">
+            ¿Listo para blindar<br />
+            <span>tu infraestructura digital?</span>
+          </h2>
+
+          <p class="cta-subtitle">
+            Agenda una asesoría gratuita de 30 minutos. Sin compromisos, sin tecnicismos. Solo soluciones reales para tu
+            PYME.
+          </p>
+
+          <form class="contact-form" id="contactForm">
+            <div class="contact-form-row">
+              <input type="text" name="nombre" placeholder="Tu nombre" required aria-label="Nombre" />
+              <input type="email" name="email" placeholder="Tu correo electrónico" required
+                aria-label="Correo electrónico" />
+            </div>
+            <input type="tel" name="telefono" placeholder="Tu teléfono (opcional)" aria-label="Teléfono" />
+            <textarea name="mensaje" placeholder="Cuéntanos sobre tu proyecto o necesidad tecnológica..." required
+              aria-label="Mensaje"></textarea>
+            <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+              <button type="submit" class="btn-primary" style="padding:16px 36px;font-size:1rem;border:none;">
+                Agendar Asesoría Gratuita
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </button>
+              <a href="tel:+525500000000" class="btn-secondary" id="cta-call-btn" style="padding:15px 30px;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path
+                    d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+                </svg>
+                Llámanos
+              </a>
+            </div>
+            <div class="form-feedback" id="formFeedback"></div>
+          </form>
+
+          <p class="cta-note">
+            <span>✓ Gratis</span> &nbsp;·&nbsp;
+            <span>✓ Sin compromisos</span> &nbsp;·&nbsp;
+            <span>✓ Respuesta en menos de 24h</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer id="footer" aria-label="Pie de página">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-brand">
+            <span class="iron">Iron</span><span class="link-word">Link</span>
+          </div>
+          <div class="footer-tagline">Infraestructura digital para PYMES · Fuerza + Conexión</div>
+        </div>
+
+        <ul class="footer-links" aria-label="Páginas del sitio">
+          <li><a href="#benefits">Beneficios</a></li>
+          <li><a href="#services">Servicios</a></li>
+          <li><a href="#empathy">Nosotros</a></li>
+          <li><a href="#cta-final">Contacto</a></li>
+        </ul>
+      </div>
+
+      <p class="footer-copy">
+        © <span id="footerYear">2024</span> <span>IronLink</span>. Todos los derechos reservados. · Hecho con ❤️ para
+        las PYMES.
+      </p>
+    </div>
+  </footer>
+
+  <!-- ══ JAVASCRIPT ══ -->
+  <script>
+    /* ── Navbar scroll effect ── */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    /* ── Mobile menu ── */
+    const mobileMenu = document.getElementById('mobileMenu');
+    document.getElementById('menuOpen').addEventListener('click', () => {
+      mobileMenu.classList.add('open');
+      mobileMenu.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    });
+    document.getElementById('menuClose').addEventListener('click', closeMobileMenu);
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('open');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    /* ── Intersection Observer for reveal animations ── */
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    reveals.forEach(el => revealObserver.observe(el));
+
+    /* ── Service card switcher ── */
+    const serviceData = {
+      1: {
+        iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>`,
+        title: 'Asesoría y Consultoría Tecnológica',
+        desc: 'Entendemos tu negocio antes de recomendar cualquier solución. Con IronLink obtienes un diagnóstico honesto, un plan claro y un acompañamiento real — sin promesas vacías.',
+        features: [
+          'Diagnóstico gratuito inicial',
+          'Análisis de riesgos y vulnerabilidades',
+          'Hoja de ruta tecnológica personalizada',
+          'Recomendaciones en lenguaje sencillo'
+        ]
+      },
+      2: {
+        iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`,
+        title: 'Creación e Instalación de Infraestructura',
+        desc: 'Diseñamos e implementamos redes, servidores y entornos digitales desde cero. Soluciones profesionales, limpias y escalables que acompañan el crecimiento de tu empresa.',
+        features: [
+          'Diseño de red LAN / WAN / WiFi',
+          'Configuración de servidores y NAS',
+          'Migración a la nube (Cloud)',
+          'Instalación de sistemas VPN seguros'
+        ]
+      },
+      3: {
+        iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
+        title: 'Mantenimiento Preventivo y Correctivo',
+        desc: 'Monitoreamos tu infraestructura continuamente para anticipar fallas. Actualizaciones automáticas, soporte remoto rápido y backups para que tu operación nunca se detenga.',
+        features: [
+          'Monitoreo proactivo 24/7',
+          'Actualizaciones y parches de seguridad',
+          'Soporte remoto con respuesta rápida',
+          'Gestión de backups automáticos'
+        ]
+      }
+    };
+
+    function selectService(num) {
+      // Update cards
+      [1, 2, 3].forEach(n => {
+        const card = document.getElementById('svc-' + n);
+        card.classList.toggle('active', n === num);
+        card.setAttribute('aria-pressed', n === num ? 'true' : 'false');
+      });
+
+      // Update panel
+      const data = serviceData[num];
+      const panel = document.getElementById('services-visual-panel');
+
+      panel.style.opacity = '0';
+      panel.style.transform = 'translateY(10px)';
+
+      setTimeout(() => {
+        document.getElementById('sv-icon').innerHTML = data.iconSvg;
+        document.getElementById('sv-title').textContent = data.title;
+        document.getElementById('sv-desc').textContent = data.desc;
+
+        const checkSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>`;
+        document.getElementById('sv-features').innerHTML = data.features.map(f =>
+          `<li class="sv-feature"><span class="sv-feature-check">${checkSvg}</span>${f}</li>`
+        ).join('');
+
+        panel.style.opacity = '1';
+        panel.style.transform = 'translateY(0)';
+      }, 200);
+    }
+
+    // Smooth panel transition
+    const svPanel = document.getElementById('services-visual-panel');
+    svPanel.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+
+    /* ── Smooth active state on service cards (keyboard) ── */
+    document.querySelectorAll('.service-card').forEach((card, i) => {
+      card.addEventListener('focus', () => selectService(i + 1));
+    });
+
+    /* ── Dynamic year in footer ── */
+    document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+    /* ── Contact form handler ── */
+    const contactForm = document.getElementById('contactForm');
+    const formFeedback = document.getElementById('formFeedback');
+
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando…';
+
+      formFeedback.className = 'form-feedback';
+      formFeedback.textContent = '';
+
+      try {
+        const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+          method: 'POST',
+          body: new FormData(contactForm),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (res.ok) {
+          formFeedback.className = 'form-feedback success';
+          formFeedback.textContent = '¡Mensaje enviado con éxito! Te responderemos en menos de 24h.';
+          contactForm.reset();
+        } else {
+          throw new Error('Error en el servidor');
+        }
+      } catch {
+        formFeedback.className = 'form-feedback error';
+        formFeedback.textContent = 'Hubo un error al enviar. Escríbenos directamente a contacto@ironlink.mx o intenta de nuevo.';
+      }
+
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = 'Agendar Asesoría Gratuita <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+    });
+  </script>
+
+</body>
+
+</html>
