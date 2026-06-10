@@ -2122,6 +2122,8 @@
           </p>
 
           <form class="contact-form" id="contactForm">
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_subject" value="Nuevo contacto desde IronLink" />
             <div class="contact-form-row">
               <input type="text" name="nombre" placeholder="Tu nombre" required aria-label="Nombre" />
               <input type="email" name="email" placeholder="Tu correo electrónico" required
@@ -2313,7 +2315,7 @@
       formFeedback.textContent = '';
 
       try {
-        const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+        const res = await fetch('https://formsubmit.co/ajax/contacto@ironlink.mx', {
           method: 'POST',
           body: new FormData(contactForm),
           headers: { 'Accept': 'application/json' }

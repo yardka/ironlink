@@ -23,11 +23,9 @@ npx serve .
 
 ## Configuración del formulario de contacto
 
-El formulario usa [Formspree](https://formspree.io). Para activarlo:
-
-1. Crea una cuenta en formspree.io
-2. Crea un nuevo formulario y copia tu ID (`https://formspree.io/f/XXXXX`)
-3. Reemplaza `YOUR_FORM_ID` en la línea del `fetch` dentro de `index.html`
+El formulario usa [FormSubmit](https://formsubmit.co) (gratuito, sin registro).
+Los mensajes llegan a `contacto@ironlink.mx`. Si quieres cambiar el correo,
+edita la URL del fetch en `index.html`:
 
 ## Estructura
 
