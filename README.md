@@ -6,22 +6,15 @@ Landing page profesional de IronLink — departamento de TI externo para PYMES m
 
 - HTML5, CSS3, Vanilla JS (ES6)
 - Google Fonts: Outfit + JetBrains Mono
-- **Netlify Functions** (Node.js)
-- **Nodemailer** + Gmail SMTP
-- **Google reCAPTCHA v3**
-- **Google Analytics 4**
+- **Formspree** (form backend, 50 envíos/mes gratis)
+- **GitHub Pages** (hosting gratuito)
 
 ## Estructura
 
 ```
 ironlink/
 ├── index.html                       # Landing page (HTML+CSS+JS)
-├── netlify/
-│   └── functions/
-│       └── contact.js               # Netlify Function: formulario + reCAPTCHA + email
-├── package.json                     # Dependencias Node.js (Nodemailer)
-├── netlify.toml                     # Configuración de despliegue Netlify
-├── .env.example                     # Variables de entorno (ejemplo)
+├── .nojekyll                        # Necesario para GitHub Pages
 ├── robots.txt                       # SEO
 ├── sitemap.xml                      # SEO
 ├── hero_bg_tech.jpg                 # Hero background optimizado
@@ -29,67 +22,27 @@ ironlink/
 └── .gitignore
 ```
 
-## Configuración
-
-### 1. Variables de entorno en Netlify
-
-Copia `.env.example` y configura estas variables en Netlify → Site settings → Environment variables:
-
-| Variable | Descripción |
-|---|---|
-| `GMAIL_USER` | ironlink631@gmail.com |
-| `GMAIL_APP_PASSWORD` | Contraseña de aplicación de Gmail (16 caracteres) |
-| `RECAPTCHA_SITE_KEY` | Clave pública de reCAPTCHA v3 |
-| `RECAPTCHA_SECRET_KEY` | Clave secreta de reCAPTCHA v3 |
-| `TO_EMAIL` | ironlink631@gmail.com |
-| `FROM_EMAIL` | ironlink631@gmail.com |
-
-### 2. Google reCAPTCHA v3
-
-1. Ve a https://www.google.com/recaptcha/admin
-2. Crea un sitio v3 con tu dominio (ironlink.mx, ironlink.netlify.app, localhost)
-3. Copia las claves a las variables de entorno
-
-### 3. Gmail App Password
-
-1. Activa 2FA en tu cuenta de Google
-2. Ve a https://myaccount.google.com/apppasswords
-3. Genera una contraseña para "Correo" y úsala como `GMAIL_APP_PASSWORD`
-
-### 4. Google Analytics 4
-
-1. Crea una propiedad GA4 en https://analytics.google.com
-2. Copia el ID de medición (G-XXXXXXXXXX)
-3. Reemplázalo en los `<script>` de `index.html` y en `.env.example`
-
-### 5. Reemplazar placeholders en index.html
-
-Busca `G-XXXXXXXXXX` y `6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI` (esto último es la key de prueba de Google; cámbiala por tu key real en producción).
-
 ## Desarrollo local
 
-```bash
-# Instalar dependencias
-npm install
+Solo abre `index.html` en tu navegador o usa cualquier servidor local:
 
-# Iniciar servidor local con Netlify Dev
-npx netlify dev
+```bash
+npx serve .
 ```
 
-Esto levanta el frontend en `http://localhost:8888` y las funciones en `/.netlify/functions/`.
+## Despliegue en GitHub Pages
 
-## Despliegue en Netlify
+1. En GitHub, ve a Settings → Pages
+2. Source: **Deploy from branch**
+3. Branch: `main`, folder: `/ (root)`
+4. Guarda
 
-1. Conecta tu repositorio de GitHub en https://app.netlify.com
-2. Netlify detecta automáticamente `netlify.toml`
-3. Configura las variables de entorno en Netlify UI
-4. Despliega
+El sitio quedará en `https://yardka.github.io/ironlink/`
 
-Netlify se encarga de:
-- Hostear el sitio estático
-- Ejecutar las funciones serverless
-- Añadir los headers de seguridad
-- Forzar HTTPS
+## Formspree
+
+Los datos del formulario llegan al correo asociado a tu cuenta de Formspree.
+Para cambiar el destino, edita el `action` del `<form>` en `index.html`.
 
 ## Contacto
 

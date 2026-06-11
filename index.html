@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -9,7 +9,7 @@
     content="IronLink es el departamento de TI externo y amigable para tu PYME. Asesoría, creación y mantenimiento de infraestructura digital segura, robusta y accesible" />
   <meta name="author" content="IronLink" />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://ironlink.mx/" />
+  <link rel="canonical" href="https://yardka.github.io/ironlink/" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -69,27 +69,12 @@
     rel="stylesheet" />
   <!-- Content Security Policy -->
   <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.google.com https://www.googletagmanager.com https://www.recaptcha.net https://*.googleapis.com https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; frame-src https://www.google.com https://www.recaptcha.net https://www.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://*.netlify.app https://ironlink.mx https://www.google.com https://www.recaptcha.net https://www.gstatic.com;" />
+    content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://formspree.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://formspree.io;" />
 
   <!-- Security headers (meta fallback) -->
   <meta http-equiv="X-Frame-Options" content="DENY" />
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
   <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
-
-  <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX', {
-      send_page_view: true,
-      cookie_flags: 'SameSite=None;Secure'
-    });
-  </script>
-
-  <!-- Google reCAPTCHA v3 -->
-  <script src="https://www.google.com/recaptcha/api.js?render=6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" async></script>
 
   <!-- Skip-to-content -->
   <style>
@@ -2386,9 +2371,7 @@
             PYME.
           </p>
 
-          <form class="contact-form" id="contactForm" action="/.netlify/functions/contact" method="POST">
-            <input type="hidden" name="recaptcha_token" id="recaptchaToken" />
-
+          <form class="contact-form" id="contactForm" action="https://formspree.io/f/mojzljjl" method="POST">
             <!-- Honeypot field: invisible to real users, bots fill it -->
             <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;top:-9999px;opacity:0;height:0;width:0;" aria-hidden="true" />
 
@@ -2703,41 +2686,7 @@
       /* ── Dynamic year in footer ── */
       document.getElementById('footerYear').textContent = new Date().getFullYear();
 
-      /* ── GA4 custom events for CTA clicks ── */
-      function trackClick(category, label) {
-        if (typeof gtag === 'function') {
-          gtag('event', 'click', {
-            'event_category': category,
-            'event_label': label
-          });
-        }
-      }
 
-      document.querySelectorAll('.btn-primary, .btn-secondary').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          var text = (btn.textContent || '').trim().substring(0, 50);
-          trackClick('cta_click', text);
-        });
-      });
-
-      /* Scroll depth tracking (GA4) */
-      var scrollDepths = [25, 50, 75, 90];
-      var scrollTracked = {};
-      window.addEventListener('scroll', function() {
-        var scrollPct = Math.round((window.scrollY + window.innerHeight) / document.documentElement.scrollHeight * 100);
-        scrollDepths.forEach(function(d) {
-          if (scrollPct >= d && !scrollTracked[d]) {
-            scrollTracked[d] = true;
-            if (typeof gtag === 'function') {
-              gtag('event', 'scroll_depth', {
-                'event_category': 'engagement',
-                'event_label': d + '%',
-                'value': d
-              });
-            }
-          }
-        });
-      }, { passive: true });
 
       /* ── Back-to-top visibility ── */
       var backToTop = document.getElementById('backToTop');
@@ -2745,34 +2694,28 @@
         backToTop.classList.toggle('visible', window.scrollY > 600);
       }, { passive: true });
 
-      /* ── Contact form handler ── */
+      /* ── Contact form handler (Formspree) ── */
       var contactForm = document.getElementById('contactForm');
       var formFeedback = document.getElementById('formFeedback');
       var formSubmitBtn = document.getElementById('formSubmitBtn');
       var submitBtnText = 'Agendar Asesor\u00EDa Gratuita';
+      var submitInProgress = false;
 
-      /* Field validation helpers */
       var formFields = {
         name: {
           el: document.getElementById('formName'),
           error: document.getElementById('formNameError'),
-          validate: function(val) {
-            return val.trim().length >= 2 && val.trim().length <= 100;
-          }
+          validate: function(val) { return val.trim().length >= 2 && val.trim().length <= 100; }
         },
         email: {
           el: document.getElementById('formEmail'),
           error: document.getElementById('formEmailError'),
-          validate: function(val) {
-            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim()) && val.trim().length <= 254;
-          }
+          validate: function(val) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim()) && val.trim().length <= 254; }
         },
         phone: {
           el: document.getElementById('formPhone'),
           error: document.getElementById('formPhoneError'),
-          validate: function(val) {
-            return val === '' || /^[\d\s\-\+\(\)]{7,20}$/.test(val.trim());
-          }
+          validate: function(val) { return val === '' || /^[\d\s\-\+\(\)]{7,20}$/.test(val.trim()); }
         },
         date: {
           el: document.getElementById('formDate'),
@@ -2797,9 +2740,7 @@
         message: {
           el: document.getElementById('formMessage'),
           error: document.getElementById('formMessageError'),
-          validate: function(val) {
-            return val.trim().length >= 10 && val.trim().length <= 2000;
-          }
+          validate: function(val) { return val.trim().length >= 10 && val.trim().length <= 2000; }
         }
       };
 
@@ -2820,7 +2761,6 @@
         });
       });
 
-      /* Character counter */
       var msgEl = document.getElementById('formMessage');
       var msgChars = document.getElementById('formMessageChars');
       msgEl.addEventListener('input', function() {
@@ -2829,10 +2769,7 @@
         msgChars.style.color = len > 1900 ? '#f87171' : 'var(--c-gray-500)';
       });
 
-      var recaptchaKey = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
-      var submitInProgress = false;
-
-      function restoreSubmitBtn() {
+      function restoreBtn() {
         formSubmitBtn.disabled = false;
         formSubmitBtn.innerHTML = submitBtnText + ' <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
         submitInProgress = false;
@@ -2851,7 +2788,6 @@
         Object.keys(formFields).forEach(function(key) {
           if (!validateField(key)) allValid = false;
         });
-
         if (!allValid) {
           setFormError('Corrige los campos marcados en rojo antes de enviar.');
           return;
@@ -2863,92 +2799,38 @@
         formFeedback.className = 'form-feedback';
         formFeedback.textContent = '';
 
-        if (typeof gtag === 'function') {
-          gtag('event', 'form_submit', {
-            'event_category': 'engagement',
-            'event_label': 'contact_form'
-          });
-        }
-
-        tryRecaptchaOrSubmit();
-      });
-
-      function tryRecaptchaOrSubmit() {
-        if (typeof grecaptcha !== 'undefined' && typeof grecaptcha.execute === 'function' && typeof grecaptcha.ready === 'function') {
-          var recaptchaDone = false;
-          var recaptchaTimer = setTimeout(function() {
-            if (!recaptchaDone) {
-              recaptchaDone = true;
-              submitForm();
-            }
-          }, 4000);
-
-          grecaptcha.ready(function() {
-            if (recaptchaDone) return;
-            grecaptcha.execute(recaptchaKey, { action: 'submit' }).then(function(token) {
-              if (recaptchaDone) return;
-              recaptchaDone = true;
-              clearTimeout(recaptchaTimer);
-              var el = document.getElementById('recaptchaToken');
-              if (el) el.value = token;
-              submitForm();
-            }).catch(function() {
-              if (recaptchaDone) return;
-              recaptchaDone = true;
-              clearTimeout(recaptchaTimer);
-              submitForm();
-            });
-          });
-        } else {
-          submitForm();
-        }
-      }
-
-      function submitForm() {
-        var formData = new FormData(contactForm);
-        var data = {};
-        formData.forEach(function(value, key) { data[key] = value; });
-
         var controller = new AbortController();
         var timeoutId = setTimeout(function() { controller.abort(); }, 15000);
 
-        fetch('/.netlify/functions/contact', {
+        fetch(contactForm.action, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
+          body: new FormData(contactForm),
+          headers: { 'Accept': 'application/json' },
           signal: controller.signal
         }).then(function(res) {
           clearTimeout(timeoutId);
-          return res.json().then(function(json) {
-            if (res.ok && json.success) {
-              formFeedback.className = 'form-feedback success';
-              formFeedback.textContent = '\u00A1Mensaje enviado con \u00E9xito! Te responderemos en menos de 24h.';
-              contactForm.reset();
-              var charsEl = document.getElementById('formMessageChars');
-              if (charsEl) charsEl.textContent = '0 / 2000';
-              if (typeof gtag === 'function') {
-                gtag('event', 'form_conversion', {
-                  'event_category': 'engagement',
-                  'event_label': 'contact_form_success'
-                });
-              }
-            } else {
-              throw new Error(json.error || 'Error del servidor');
-            }
-          });
+          if (res.ok) {
+            formFeedback.className = 'form-feedback success';
+            formFeedback.textContent = '\u00A1Mensaje enviado con \u00E9xito! Te responderemos en menos de 24h.';
+            contactForm.reset();
+            var charsEl = document.getElementById('formMessageChars');
+            if (charsEl) charsEl.textContent = '0 / 2000';
+          } else {
+            return res.json().then(function(json) {
+              throw new Error(json.error || 'Error al enviar');
+            });
+          }
         }).catch(function(err) {
           clearTimeout(timeoutId);
           if (err.name === 'AbortError') {
             setFormError('El servidor no responde. Escr\u00EDbenos a contacto@ironlink.mx o intenta m\u00E1s tarde.');
-          } else if (location.protocol === 'file:') {
-            setFormError('Abre el sitio con un servidor local (netlify dev) o despu\u00E9s del deploy en Netlify.');
           } else {
             setFormError('Hubo un error al enviar. Escr\u00EDbenos a contacto@ironlink.mx o intenta de nuevo.');
           }
         }).then(function() {
-          restoreSubmitBtn();
+          restoreBtn();
         });
-      }
+      });
 
     })();
   </script>
