@@ -3,6 +3,7 @@ const nodemailer = require('nodemailer');
 const ALLOWED_ORIGINS = [
   'https://ironlink.mx',
   'https://ironlink.netlify.app',
+  'https://ironlink-216.netlify.app',
   'http://localhost:8000',
   'http://localhost:3000',
   'http://localhost:8888'
