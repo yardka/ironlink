@@ -6,3 +6,11 @@ Thumbs.db
 .idea/
 .vscode/
 *.sublime-*
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Environment
+.env
+.env.local

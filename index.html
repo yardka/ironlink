@@ -7,8 +7,6 @@
   <title>IronLink | Infraestructura Digital para PYMES</title>
   <meta name="description"
     content="IronLink es el departamento de TI externo y amigable para tu PYME. Asesoría, creación y mantenimiento de infraestructura digital segura, robusta y accesible" />
-  <meta name="keywords"
-    content="infraestructura digital, PYMES, asesoría tecnológica, mantenimiento de redes, seguridad informática, TI externo" />
   <meta name="author" content="IronLink" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://ironlink.mx/" />
@@ -28,11 +26,13 @@
     content="El departamento de TI externo y amigable para tu PYME. Asesoría, instalación y mantenimiento de infraestructura digital." />
   <meta name="twitter:image" content="https://ironlink.mx/ironlink.png.jpeg" />
 
-  <!-- Open Graph Image (para Facebook, LinkedIn, WhatsApp) -->
+  <!-- Open Graph Image -->
   <meta property="og:image" content="https://ironlink.mx/ironlink.png.jpeg" />
   <meta property="og:image:width" content="989" />
   <meta property="og:image:height" content="1015" />
+  <meta property="og:image:alt" content="IronLink - Infraestructura Digital para PYMES" />
   <meta property="og:site_name" content="IronLink" />
+  <meta name="twitter:image:alt" content="IronLink - Infraestructura Digital para PYMES" />
 
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
@@ -67,6 +67,30 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
+  <!-- Content Security Policy -->
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.google.com https://www.googletagmanager.com https://www.recaptcha.net https://*.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; frame-src https://www.google.com https://www.recaptcha.net; img-src 'self' https: data:; connect-src 'self' https://*.netlify.app https://ironlink.mx https://www.google.com https://www.recaptcha.net;" />
+
+  <!-- Security headers (meta fallback) -->
+  <meta http-equiv="X-Frame-Options" content="DENY" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX', {
+      send_page_view: true,
+      cookie_flags: 'SameSite=None;Secure'
+    });
+  </script>
+
+  <!-- Google reCAPTCHA v3 -->
+  <script src="https://www.google.com/recaptcha/api.js?render=6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" async defer></script>
+
   <!-- Skip-to-content -->
   <style>
     .skip-link {
@@ -1407,13 +1431,26 @@
       margin: 0 auto 32px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 18px;
     }
 
     .contact-form-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
+    }
+
+    .contact-form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .contact-form-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--c-gray-300);
+      letter-spacing: 0.02em;
     }
 
     .contact-form input,
@@ -1437,6 +1474,12 @@
       box-shadow: 0 0 0 3px rgba(25, 174, 216, 0.1);
     }
 
+    .contact-form input.has-error,
+    .contact-form textarea.has-error {
+      border-color: rgba(239, 68, 68, 0.5);
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    }
+
     .contact-form input::placeholder,
     .contact-form textarea::placeholder {
       color: var(--c-gray-500);
@@ -1445,6 +1488,12 @@
     .contact-form textarea {
       resize: vertical;
       min-height: 100px;
+    }
+
+    .contact-form input[type="date"],
+    .contact-form input[type="time"] {
+      color-scheme: dark;
+      min-height: 48px;
     }
 
     .contact-form .btn-primary {
@@ -1470,6 +1519,25 @@
       background: rgba(239, 68, 68, 0.1);
       border: 1px solid rgba(239, 68, 68, 0.3);
       color: #f87171;
+    }
+
+    .contact-form-error {
+      font-size: 0.78rem;
+      color: #f87171;
+      min-height: 0;
+      overflow: hidden;
+      transition: min-height 0.2s;
+    }
+
+    .contact-form-error:empty {
+      display: none;
+    }
+
+    .contact-form-chars {
+      font-size: 0.75rem;
+      color: var(--c-gray-500);
+      text-align: right;
+      margin-top: -4px;
     }
 
     @media (max-width: 480px) {
@@ -1519,6 +1587,22 @@
         width: 44px;
         height: 44px;
       }
+    }
+
+    /* Button spinner */
+    .btn-spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid transparent;
+      border-top-color: var(--c-bg);
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      vertical-align: middle;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
 
     /* ══════════════════════════════════════════════
@@ -1717,7 +1801,7 @@
 </head>
 
 <body>
-  <a href="#hero" class="skip-link">Saltar al contenido principal</a>
+  <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
 
   <!-- ══ MOBILE MENU ══ -->
   <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
@@ -1737,7 +1821,7 @@
       <div class="nav-inner">
         <a href="#hero" class="nav-logo" aria-label="IronLink inicio">
           <div class="nav-logo-icon" aria-hidden="true">
-            <img src="ironlink.png.jpeg" alt="IronLink logo" fetchpriority="high" />
+            <img src="ironlink.png.jpeg" alt="IronLink logo" width="44" height="44" fetchpriority="high" />
           </div>
           <span class="nav-logo-text">
             <span class="iron">Iron</span><span class="link-word">Link</span>
@@ -1766,6 +1850,7 @@
     </div>
   </nav>
 
+  <main id="main-content">
   <!-- ══ SECTION 1: HERO ══ -->
   <section id="hero" aria-labelledby="hero-title">
     <div class="hero-bg" aria-hidden="true"></div>
@@ -1775,7 +1860,7 @@
 
     <div class="container" style="position:relative;z-index:2;display:flex;align-items:center;gap:40px;">
       <div class="hero-content">
-        <div class="hero-badge" role="doc-subtitle" aria-hidden="true">
+        <div class="hero-badge" aria-hidden="true">
           <span class="hero-badge-dot" aria-hidden="true"></span>
           TI Externo · 100% enfocado en PYMES
         </div>
@@ -2002,7 +2087,7 @@
         <div class="services-left">
 
           <div class="service-card reveal active" id="svc-1" tabindex="0" role="button" aria-pressed="true"
-            onclick="selectService(1)" onkeydown="if(event.key==='Enter')selectService(1)">
+            onclick="selectService(1)" onkeydown="if(event.key==='Enter'||event.key===' ')selectService(1)">
             <div class="service-num">01 / SERVICIO</div>
             <h3 class="service-title">Asesoría y Consultoría Tecnológica</h3>
             <p class="service-desc">Te acompañamos desde el diagnóstico hasta la estrategia. Analizamos tu negocio,
@@ -2016,7 +2101,7 @@
           </div>
 
           <div class="service-card reveal reveal-delay-1" id="svc-2" tabindex="0" role="button" aria-pressed="false"
-            onclick="selectService(2)" onkeydown="if(event.key==='Enter')selectService(2)">
+            onclick="selectService(2)" onkeydown="if(event.key==='Enter'||event.key===' ')selectService(2)">
             <div class="service-num">02 / SERVICIO</div>
             <h3 class="service-title">Creación e Instalación de Infraestructura Digital</h3>
             <p class="service-desc">Diseñamos e implementamos redes, sistemas y entornos tecnológicos desde cero.
@@ -2030,7 +2115,7 @@
           </div>
 
           <div class="service-card reveal reveal-delay-2" id="svc-3" tabindex="0" role="button" aria-pressed="false"
-            onclick="selectService(3)" onkeydown="if(event.key==='Enter')selectService(3)">
+            onclick="selectService(3)" onkeydown="if(event.key==='Enter'||event.key===' ')selectService(3)">
             <div class="service-num">03 / SERVICIO</div>
             <h3 class="service-title">Mantenimiento Preventivo y Correctivo</h3>
             <p class="service-desc">Monitoreamos, actualizamos y solucionamos. Prevenimos fallos antes de que ocurran y
@@ -2301,19 +2386,61 @@
             PYME.
           </p>
 
-          <form class="contact-form" id="contactForm">
-            <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_subject" value="Nuevo contacto desde IronLink" />
+          <form class="contact-form" id="contactForm" action="/.netlify/functions/contact" method="POST">
+            <input type="hidden" name="recaptcha_token" id="recaptchaToken" />
+
+            <!-- Honeypot field: invisible to real users, bots fill it -->
+            <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;top:-9999px;opacity:0;height:0;width:0;" aria-hidden="true" />
+
             <div class="contact-form-row">
-              <input type="text" name="nombre" placeholder="Tu nombre" required aria-label="Nombre" />
-              <input type="email" name="email" placeholder="Tu correo electrónico" required
-                aria-label="Correo electrónico" />
+              <div class="contact-form-field">
+                <label for="formName" class="contact-form-label">Nombre completo</label>
+                <input type="text" id="formName" name="name" placeholder="Ej. Juan Pérez" required
+                  minlength="2" maxlength="100" pattern="[\p{L}\s\.\']{2,100}" autocomplete="name"
+                  aria-required="true" data-error="El nombre debe tener entre 2 y 100 caracteres" />
+                <span class="contact-form-error" id="formNameError" role="alert"></span>
+              </div>
+              <div class="contact-form-field">
+                <label for="formEmail" class="contact-form-label">Correo electrónico</label>
+                <input type="email" id="formEmail" name="email" placeholder="Ej. cliente@empresa.com" required
+                  maxlength="254" autocomplete="email" aria-required="true"
+                  data-error="Ingresa un correo electrónico válido" />
+                <span class="contact-form-error" id="formEmailError" role="alert"></span>
+              </div>
             </div>
-            <input type="tel" name="telefono" placeholder="Tu teléfono (opcional)" aria-label="Teléfono" />
-            <textarea name="mensaje" placeholder="Cuéntanos sobre tu proyecto o necesidad tecnológica..." required
-              aria-label="Mensaje"></textarea>
+
+            <div class="contact-form-field">
+              <label for="formPhone" class="contact-form-label">Teléfono (opcional)</label>
+              <input type="tel" id="formPhone" name="phone" placeholder="Ej. +52 55 1234 5678"
+                maxlength="20" autocomplete="tel" pattern="[\d\s\-\+\(\)]{7,20}"
+                data-error="Ingresa un número telefónico válido (ej. +52 55 1234 5678)" />
+              <span class="contact-form-error" id="formPhoneError" role="alert"></span>
+            </div>
+
+            <div class="contact-form-row">
+              <div class="contact-form-field">
+                <label for="formDate" class="contact-form-label">Fecha preferida (opcional)</label>
+                <input type="date" id="formDate" name="date" />
+                <span class="contact-form-error" id="formDateError" role="alert"></span>
+              </div>
+              <div class="contact-form-field">
+                <label for="formTime" class="contact-form-label">Hora preferida (opcional)</label>
+                <input type="time" id="formTime" name="time" />
+                <span class="contact-form-error" id="formTimeError" role="alert"></span>
+              </div>
+            </div>
+
+            <div class="contact-form-field">
+              <label for="formMessage" class="contact-form-label">Cuéntanos sobre tu proyecto</label>
+              <textarea id="formMessage" name="message" placeholder="Describe tu necesidad tecnológica, el tamaño de tu empresa y lo que esperas lograr..."
+                required minlength="10" maxlength="2000" aria-required="true"
+                data-error="El mensaje debe tener entre 10 y 2000 caracteres"></textarea>
+              <span class="contact-form-error" id="formMessageError" role="alert"></span>
+              <span class="contact-form-chars" id="formMessageChars">0 / 2000</span>
+            </div>
+
             <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
-              <button type="submit" class="btn-primary" style="padding:16px 36px;font-size:1rem;border:none;">
+              <button type="submit" class="btn-primary" id="formSubmitBtn" style="padding:16px 36px;font-size:1rem;border:none;">
                 Agendar Asesoría Gratuita
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                   <path d="M5 12h14M12 5l7 7-7 7" />
@@ -2405,6 +2532,7 @@
       </div>
     </div>
   </section>
+  </main>
 
   <!-- ══ FOOTER ══ -->
   <footer id="footer" aria-label="Pie de página">
@@ -2575,6 +2703,42 @@
       /* ── Dynamic year in footer ── */
       document.getElementById('footerYear').textContent = new Date().getFullYear();
 
+      /* ── GA4 custom events for CTA clicks ── */
+      function trackClick(category, label) {
+        if (typeof gtag === 'function') {
+          gtag('event', 'click', {
+            'event_category': category,
+            'event_label': label
+          });
+        }
+      }
+
+      document.querySelectorAll('.btn-primary, .btn-secondary').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var text = (btn.textContent || '').trim().substring(0, 50);
+          trackClick('cta_click', text);
+        });
+      });
+
+      /* Scroll depth tracking (GA4) */
+      var scrollDepths = [25, 50, 75, 90];
+      var scrollTracked = {};
+      window.addEventListener('scroll', function() {
+        var scrollPct = Math.round((window.scrollY + window.innerHeight) / document.documentElement.scrollHeight * 100);
+        scrollDepths.forEach(function(d) {
+          if (scrollPct >= d && !scrollTracked[d]) {
+            scrollTracked[d] = true;
+            if (typeof gtag === 'function') {
+              gtag('event', 'scroll_depth', {
+                'event_category': 'engagement',
+                'event_label': d + '%',
+                'value': d
+              });
+            }
+          }
+        });
+      }, { passive: true });
+
       /* ── Back-to-top visibility ── */
       var backToTop = document.getElementById('backToTop');
       window.addEventListener('scroll', function() {
@@ -2584,36 +2748,161 @@
       /* ── Contact form handler ── */
       var contactForm = document.getElementById('contactForm');
       var formFeedback = document.getElementById('formFeedback');
+      var formSubmitBtn = document.getElementById('formSubmitBtn');
+      var submitBtnText = 'Agendar Asesor\u00EDa Gratuita';
+
+      /* Field validation helpers */
+      var formFields = {
+        name: {
+          el: document.getElementById('formName'),
+          error: document.getElementById('formNameError'),
+          validate: function(val) {
+            return val.trim().length >= 2 && val.trim().length <= 100;
+          }
+        },
+        email: {
+          el: document.getElementById('formEmail'),
+          error: document.getElementById('formEmailError'),
+          validate: function(val) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim()) && val.trim().length <= 254;
+          }
+        },
+        phone: {
+          el: document.getElementById('formPhone'),
+          error: document.getElementById('formPhoneError'),
+          validate: function(val) {
+            return val === '' || /^[\d\s\-\+\(\)]{7,20}$/.test(val.trim());
+          }
+        },
+        date: {
+          el: document.getElementById('formDate'),
+          error: document.getElementById('formDateError'),
+          validate: function(val) {
+            if (!val) return true;
+            var d = new Date(val + 'T12:00:00Z');
+            if (isNaN(d.getTime())) return false;
+            var today = new Date(); today.setHours(0,0,0,0);
+            return d >= today;
+          }
+        },
+        time: {
+          el: document.getElementById('formTime'),
+          error: document.getElementById('formTimeError'),
+          validate: function(val) {
+            if (!val) return true;
+            var parts = val.split(':').map(Number);
+            return parts[0] >= 0 && parts[0] <= 23 && parts[1] >= 0 && parts[1] <= 59;
+          }
+        },
+        message: {
+          el: document.getElementById('formMessage'),
+          error: document.getElementById('formMessageError'),
+          validate: function(val) {
+            return val.trim().length >= 10 && val.trim().length <= 2000;
+          }
+        }
+      };
+
+      function validateField(key) {
+        var field = formFields[key];
+        var val = field.el.value;
+        var isValid = field.validate(val);
+        field.el.classList.toggle('has-error', !isValid && val.length > 0);
+        field.error.textContent = (!isValid && val.length > 0) ? field.el.getAttribute('data-error') : '';
+        return isValid;
+      }
+
+      Object.keys(formFields).forEach(function(key) {
+        var field = formFields[key];
+        field.el.addEventListener('blur', function() { validateField(key); });
+        field.el.addEventListener('input', function() {
+          if (field.el.classList.contains('has-error')) validateField(key);
+        });
+      });
+
+      /* Character counter */
+      var msgEl = document.getElementById('formMessage');
+      var msgChars = document.getElementById('formMessageChars');
+      msgEl.addEventListener('input', function() {
+        var len = msgEl.value.length;
+        msgChars.textContent = len + ' / 2000';
+        msgChars.style.color = len > 1900 ? '#f87171' : 'var(--c-gray-500)';
+      });
 
       contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        var submitBtn = contactForm.querySelector('button[type="submit"]');
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Enviando\u2026';
 
+        var allValid = true;
+        Object.keys(formFields).forEach(function(key) {
+          if (!validateField(key)) allValid = false;
+        });
+
+        if (!allValid) {
+          formFeedback.className = 'form-feedback error';
+          formFeedback.textContent = 'Corrige los campos marcados en rojo antes de enviar.';
+          return;
+        }
+
+        formSubmitBtn.disabled = true;
+        formSubmitBtn.innerHTML = '<div class="btn-spinner"></div> Enviando...';
         formFeedback.className = 'form-feedback';
         formFeedback.textContent = '';
 
-        fetch('https://formsubmit.co/ajax/contacto@ironlink.mx', {
-          method: 'POST',
-          body: new FormData(contactForm),
-          headers: { 'Accept': 'application/json' }
-        }).then(function(res) {
-          if (res.ok) {
-            formFeedback.className = 'form-feedback success';
-            formFeedback.textContent = '\u00a1Mensaje enviado con \u00e9xito! Te responderemos en menos de 24h.';
-            contactForm.reset();
-          } else {
-            throw new Error('Error en el servidor');
-          }
-        }).catch(function() {
-          formFeedback.className = 'form-feedback error';
-          formFeedback.textContent = 'Hubo un error al enviar. Escr\u00edbenos directamente a contacto@ironlink.mx o intenta de nuevo.';
-        }).then(function() {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = 'Agendar Asesor\u00eda Gratuita <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
-        });
+        /* GA4 event: form_submit */
+        if (typeof gtag === 'function') {
+          gtag('event', 'form_submit', {
+            'event_category': 'engagement',
+            'event_label': 'contact_form'
+          });
+        }
+
+        /* Get reCAPTCHA token */
+        if (typeof grecaptcha !== 'undefined') {
+          grecaptcha.ready(function() {
+            grecaptcha.execute('6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI', { action: 'submit' }).then(function(token) {
+              document.getElementById('recaptchaToken').value = token;
+              submitForm();
+            });
+          });
+        } else {
+          submitForm();
+        }
       });
+
+      function submitForm() {
+        var formData = new FormData(contactForm);
+        var data = {};
+        formData.forEach(function(value, key) { data[key] = value; });
+
+        fetch('/.netlify/functions/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        }).then(function(res) {
+          return res.json().then(function(json) {
+            if (res.ok && json.success) {
+              formFeedback.className = 'form-feedback success';
+              formFeedback.textContent = '\u00A1Mensaje enviado con \u00E9xito! Te responderemos en menos de 24h.';
+              contactForm.reset();
+              document.getElementById('formMessageChars').textContent = '0 / 2000';
+              if (typeof gtag === 'function') {
+                gtag('event', 'form_conversion', {
+                  'event_category': 'engagement',
+                  'event_label': 'contact_form_success'
+                });
+              }
+            } else {
+              throw new Error(json.error || 'Error del servidor');
+            }
+          });
+        }).catch(function(err) {
+          formFeedback.className = 'form-feedback error';
+          formFeedback.textContent = 'Hubo un error al enviar. Escr\u00EDbenos a contacto@ironlink.mx o intenta de nuevo.';
+        }).then(function() {
+          formSubmitBtn.disabled = false;
+          formSubmitBtn.innerHTML = submitBtnText + ' <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+        });
+      }
 
     })();
   </script>

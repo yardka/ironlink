@@ -1,0 +1,15 @@
+{
+  "name": "ironlink",
+  "version": "1.0.0",
+  "description": "IronLink - Landing page con Netlify Functions",
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "echo 'Static site, no build required'"
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.16"
+  },
+  "devDependencies": {
+    "@netlify/functions": "^2.8.0"
+  }
+}
