@@ -21,21 +21,33 @@ python -m http.server 8000
 npx serve .
 ```
 
-## Configuración del formulario de contacto
-
-El formulario usa [FormSubmit](https://formsubmit.co) (gratuito, sin registro).
-Los mensajes llegan a `contacto@ironlink.mx`. Si quieres cambiar el correo,
-edita la URL del fetch en `index.html`:
-
 ## Estructura
 
 ```
 ironlink/
-  index.html          # Toda la página (HTML + CSS + JS)
-  hero_bg.png         # Fondo del hero
-  hero_bg_tech.png    # Overlay técnico
-  ironlink.png.jpeg   # Logo
+  index.html            # Toda la página (HTML + CSS + JS)
+  hero_bg_tech.jpg      # Fondo del hero (comprimido)
+  ironlink.png.jpeg     # Logo
 ```
+
+## Formulario de contacto
+
+Usa [FormSubmit](https://formsubmit.co) (gratuito, sin registro).
+Los mensajes llegan a `contacto@ironlink.mx`. Para cambiar el destino,
+edita la URL en `index.html`:
+```js
+fetch('https://formsubmit.co/ajax/tu@email.com', ...)
+```
+
+## Secciones
+
+- Hero con dashboard animado
+- Servicios interactivos (consultoría, infraestructura, mantenimiento)
+- Problema vs. Solución
+- Testimonios
+- FAQ
+- Formulario de contacto + llamada telefónica
+- Footer con navegación y copyright dinámico
 
 ## Contacto
 
