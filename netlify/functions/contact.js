@@ -101,45 +101,32 @@ exports.handler = async (event) => {
     };
   }
 
-  // reCAPTCHA verification
+  // reCAPTCHA verification (non-blocking in dev mode)
   const recaptchaToken = body.recaptcha_token;
-  if (!recaptchaToken) {
-    console.warn(`[SECURITY] Missing reCAPTCHA token from IP ${clientIP}`);
-    return {
-      statusCode: 400,
-      headers: { 'Access-Control-Allow-Origin': allowedOrigin, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ error: 'reCAPTCHA verification failed' })
-    };
-  }
-
-  const RECAPTCHA_SECRET = process.env.RECAPTCHA_SECRET_KEY;
-  let recaptchaValid = false;
-  try {
-    const params = new URLSearchParams({
-      secret: RECAPTCHA_SECRET,
-      response: recaptchaToken,
-      remoteip: clientIP
-    });
-    const verifyResp = await fetch('https://www.google.com/recaptcha/api/siteverify', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: params.toString()
-    });
-    const verifyData = await verifyResp.json();
-    recaptchaValid = verifyData.success && (typeof verifyData.score !== 'number' || verifyData.score >= 0.5);
-    if (!recaptchaValid) {
-      console.warn(`[SECURITY] reCAPTCHA failed (score: ${verifyData.score}) from IP ${clientIP}`);
+  if (recaptchaToken) {
+    const RECAPTCHA_SECRET = process.env.RECAPTCHA_SECRET_KEY;
+    let recaptchaValid = false;
+    try {
+      const params = new URLSearchParams({
+        secret: RECAPTCHA_SECRET,
+        response: recaptchaToken,
+        remoteip: clientIP
+      });
+      const verifyResp = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: params.toString()
+      });
+      const verifyData = await verifyResp.json();
+      recaptchaValid = verifyData.success && (typeof verifyData.score !== 'number' || verifyData.score >= 0.5);
+      if (!recaptchaValid) {
+        console.warn(`[SECURITY] reCAPTCHA failed (score: ${verifyData.score}) from IP ${clientIP}`);
+      }
+    } catch (err) {
+      console.error(`[ERROR] reCAPTCHA error: ${err.message}`);
     }
-  } catch (err) {
-    console.error(`[ERROR] reCAPTCHA error: ${err.message}`);
-  }
-
-  if (!recaptchaValid) {
-    return {
-      statusCode: 400,
-      headers: { 'Access-Control-Allow-Origin': allowedOrigin, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ error: 'reCAPTCHA verification failed' })
-    };
+  } else {
+    console.warn(`[WARN] Missing reCAPTCHA token from IP ${clientIP}`);
   }
 
   // Field validation

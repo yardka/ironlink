@@ -69,7 +69,7 @@
     rel="stylesheet" />
   <!-- Content Security Policy -->
   <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.google.com https://www.googletagmanager.com https://www.recaptcha.net https://*.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; frame-src https://www.google.com https://www.recaptcha.net; img-src 'self' https: data:; connect-src 'self' https://*.netlify.app https://ironlink.mx https://www.google.com https://www.recaptcha.net;" />
+    content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.google.com https://www.googletagmanager.com https://www.recaptcha.net https://*.googleapis.com https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; frame-src https://www.google.com https://www.recaptcha.net https://www.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://*.netlify.app https://ironlink.mx https://www.google.com https://www.recaptcha.net https://www.gstatic.com;" />
 
   <!-- Security headers (meta fallback) -->
   <meta http-equiv="X-Frame-Options" content="DENY" />
@@ -89,7 +89,7 @@
   </script>
 
   <!-- Google reCAPTCHA v3 -->
-  <script src="https://www.google.com/recaptcha/api.js?render=6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" async defer></script>
+  <script src="https://www.google.com/recaptcha/api.js?render=6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" async></script>
 
   <!-- Skip-to-content -->
   <style>
@@ -2879,10 +2879,9 @@
           var recaptchaTimer = setTimeout(function() {
             if (!recaptchaDone) {
               recaptchaDone = true;
-              setFormError('reCAPTCHA no respondi\u00F3. Desactiva tu bloqueador de anuncios o intenta de nuevo.');
-              restoreSubmitBtn();
+              submitForm();
             }
-          }, 6000);
+          }, 4000);
 
           grecaptcha.ready(function() {
             if (recaptchaDone) return;
@@ -2897,13 +2896,11 @@
               if (recaptchaDone) return;
               recaptchaDone = true;
               clearTimeout(recaptchaTimer);
-              setFormError('Error al verificar el captcha. Desactiva tu bloqueador de anuncios o intenta de nuevo.');
-              restoreSubmitBtn();
+              submitForm();
             });
           });
         } else {
-          setFormError('reCAPTCHA no est\u00E1 disponible. Desactiva tu bloqueador de anuncios o intenta de nuevo.');
-          restoreSubmitBtn();
+          submitForm();
         }
       }
 
