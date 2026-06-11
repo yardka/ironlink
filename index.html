@@ -2879,7 +2879,8 @@
           var recaptchaTimer = setTimeout(function() {
             if (!recaptchaDone) {
               recaptchaDone = true;
-              submitForm();
+              setFormError('reCAPTCHA no respondi\u00F3. Desactiva tu bloqueador de anuncios o intenta de nuevo.');
+              restoreSubmitBtn();
             }
           }, 6000);
 
@@ -2896,11 +2897,13 @@
               if (recaptchaDone) return;
               recaptchaDone = true;
               clearTimeout(recaptchaTimer);
-              submitForm();
+              setFormError('Error al verificar el captcha. Desactiva tu bloqueador de anuncios o intenta de nuevo.');
+              restoreSubmitBtn();
             });
           });
         } else {
-          submitForm();
+          setFormError('reCAPTCHA no est\u00E1 disponible. Desactiva tu bloqueador de anuncios o intenta de nuevo.');
+          restoreSubmitBtn();
         }
       }
 
