@@ -2396,7 +2396,7 @@
               <div class="contact-form-field">
                 <label for="formName" class="contact-form-label">Nombre completo</label>
                 <input type="text" id="formName" name="name" placeholder="Ej. Juan Pérez" required
-                  minlength="2" maxlength="100" pattern="[\p{L}\s\.\']{2,100}" autocomplete="name"
+                  minlength="2" maxlength="100" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñüÜ\s\.\']{2,100}" autocomplete="name"
                   aria-required="true" data-error="El nombre debe tener entre 2 y 100 caracteres" />
                 <span class="contact-form-error" id="formNameError" role="alert"></span>
               </div>
@@ -2829,8 +2829,23 @@
         msgChars.style.color = len > 1900 ? '#f87171' : 'var(--c-gray-500)';
       });
 
+      var recaptchaKey = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
+      var submitInProgress = false;
+
+      function restoreSubmitBtn() {
+        formSubmitBtn.disabled = false;
+        formSubmitBtn.innerHTML = submitBtnText + ' <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+        submitInProgress = false;
+      }
+
+      function setFormError(msg) {
+        formFeedback.className = 'form-feedback error';
+        formFeedback.textContent = msg;
+      }
+
       contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
+        if (submitInProgress) return;
 
         var allValid = true;
         Object.keys(formFields).forEach(function(key) {
@@ -2838,17 +2853,16 @@
         });
 
         if (!allValid) {
-          formFeedback.className = 'form-feedback error';
-          formFeedback.textContent = 'Corrige los campos marcados en rojo antes de enviar.';
+          setFormError('Corrige los campos marcados en rojo antes de enviar.');
           return;
         }
 
+        submitInProgress = true;
         formSubmitBtn.disabled = true;
         formSubmitBtn.innerHTML = '<div class="btn-spinner"></div> Enviando...';
         formFeedback.className = 'form-feedback';
         formFeedback.textContent = '';
 
-        /* GA4 event: form_submit */
         if (typeof gtag === 'function') {
           gtag('event', 'form_submit', {
             'event_category': 'engagement',
@@ -2856,35 +2870,62 @@
           });
         }
 
-        /* Get reCAPTCHA token */
-        if (typeof grecaptcha !== 'undefined') {
+        tryRecaptchaOrSubmit();
+      });
+
+      function tryRecaptchaOrSubmit() {
+        if (typeof grecaptcha !== 'undefined' && typeof grecaptcha.execute === 'function' && typeof grecaptcha.ready === 'function') {
+          var recaptchaDone = false;
+          var recaptchaTimer = setTimeout(function() {
+            if (!recaptchaDone) {
+              recaptchaDone = true;
+              submitForm();
+            }
+          }, 6000);
+
           grecaptcha.ready(function() {
-            grecaptcha.execute('6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI', { action: 'submit' }).then(function(token) {
-              document.getElementById('recaptchaToken').value = token;
+            if (recaptchaDone) return;
+            grecaptcha.execute(recaptchaKey, { action: 'submit' }).then(function(token) {
+              if (recaptchaDone) return;
+              recaptchaDone = true;
+              clearTimeout(recaptchaTimer);
+              var el = document.getElementById('recaptchaToken');
+              if (el) el.value = token;
+              submitForm();
+            }).catch(function() {
+              if (recaptchaDone) return;
+              recaptchaDone = true;
+              clearTimeout(recaptchaTimer);
               submitForm();
             });
           });
         } else {
           submitForm();
         }
-      });
+      }
 
       function submitForm() {
         var formData = new FormData(contactForm);
         var data = {};
         formData.forEach(function(value, key) { data[key] = value; });
 
+        var controller = new AbortController();
+        var timeoutId = setTimeout(function() { controller.abort(); }, 15000);
+
         fetch('/.netlify/functions/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
+          body: JSON.stringify(data),
+          signal: controller.signal
         }).then(function(res) {
+          clearTimeout(timeoutId);
           return res.json().then(function(json) {
             if (res.ok && json.success) {
               formFeedback.className = 'form-feedback success';
               formFeedback.textContent = '\u00A1Mensaje enviado con \u00E9xito! Te responderemos en menos de 24h.';
               contactForm.reset();
-              document.getElementById('formMessageChars').textContent = '0 / 2000';
+              var charsEl = document.getElementById('formMessageChars');
+              if (charsEl) charsEl.textContent = '0 / 2000';
               if (typeof gtag === 'function') {
                 gtag('event', 'form_conversion', {
                   'event_category': 'engagement',
@@ -2896,11 +2937,16 @@
             }
           });
         }).catch(function(err) {
-          formFeedback.className = 'form-feedback error';
-          formFeedback.textContent = 'Hubo un error al enviar. Escr\u00EDbenos a contacto@ironlink.mx o intenta de nuevo.';
+          clearTimeout(timeoutId);
+          if (err.name === 'AbortError') {
+            setFormError('El servidor no responde. Escr\u00EDbenos a contacto@ironlink.mx o intenta m\u00E1s tarde.');
+          } else if (location.protocol === 'file:') {
+            setFormError('Abre el sitio con un servidor local (netlify dev) o despu\u00E9s del deploy en Netlify.');
+          } else {
+            setFormError('Hubo un error al enviar. Escr\u00EDbenos a contacto@ironlink.mx o intenta de nuevo.');
+          }
         }).then(function() {
-          formSubmitBtn.disabled = false;
-          formSubmitBtn.innerHTML = submitBtnText + ' <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+          restoreSubmitBtn();
         });
       }
 
