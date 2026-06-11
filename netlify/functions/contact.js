@@ -126,7 +126,7 @@ exports.handler = async (event) => {
       body: params.toString()
     });
     const verifyData = await verifyResp.json();
-    recaptchaValid = verifyData.success && verifyData.score >= 0.5;
+    recaptchaValid = verifyData.success && (typeof verifyData.score !== 'number' || verifyData.score >= 0.5);
     if (!recaptchaValid) {
       console.warn(`[SECURITY] reCAPTCHA failed (score: ${verifyData.score}) from IP ${clientIP}`);
     }
