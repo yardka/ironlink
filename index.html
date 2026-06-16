@@ -17,7 +17,7 @@
   <meta property="og:description"
     content="El departamento de TI externo y amigable para tu PYME. Asesoría, instalación y mantenimiento de infraestructura digital" />
   <meta property="og:url" content="https://ironlink.mx/" />
-  <meta property="og:locale" content="es_MX" />
+  <meta property="og:locale" content="es_CO" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -45,14 +45,14 @@
     "description": "Departamento de TI externo y amigable para PYMES. Asesoría, instalación y mantenimiento de infraestructura digital.",
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+52-55-0000-0000",
+      "telephone": "+57-1-000-0000",
       "contactType": "customer service",
       "email": "contacto@ironlink.mx",
       "availableLanguage": ["es"]
     },
     "address": {
       "@type": "PostalAddress",
-      "addressCountry": "MX"
+      "addressCountry": "CO"
     },
     "sameAs": []
   }
@@ -60,7 +60,7 @@
 
   <!-- Favicon (inline SVG) -->
   <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230d1117'/%3E%3Cpath d='M16 4l10 5v6c0 5.5-4 9-10 10-6-1-10-4.5-10-10V9l10-5z' fill='%2319AED8' opacity='0.9'/%3E%3Cpath d='M11 16l2.5 2.5L21 12' fill='none' stroke='%230d1117' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230d1117'/%3E%3Cpath d='M16 4l10 5v6c0 5.5-4 9-10 10-6-1-10-4.5-10-10V9l10-5z' fill='%2322B3DF' opacity='0.9'/%3E%3Cpath d='M11 16l2.5 2.5L21 12' fill='none' stroke='%230d1117' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -100,27 +100,27 @@
        DESIGN TOKENS & RESET
     ══════════════════════════════════════════════ */
     :root {
-      --c-bg: #07090f;
-      --c-surface: #0d1117;
-      --c-surface2: #111827;
+      --c-bg: #000000;
+      --c-surface: #111111;
+      --c-surface2: #1a1a1a;
       --c-border: rgba(255, 255, 255, 0.07);
-      --c-border2: rgba(25, 174, 216, 0.18);
+      --c-border2: rgba(34, 179, 223, 0.18);
 
-      --c-accent: #19AED8;
-      --c-accent2: #1598C0;
-      --c-accent3: #4BC4E8;
-      --c-glow: rgba(25, 174, 216, 0.35);
-      --c-glow2: rgba(25, 174, 216, 0.12);
+      --c-accent: #22B3DF;
+      --c-accent2: #1D99BF;
+      --c-accent3: #4DC4E5;
+      --c-glow: rgba(34, 179, 223, 0.35);
+      --c-glow2: rgba(34, 179, 223, 0.12);
 
-      --c-white: #ffffff;
+      --c-white: #F7F7F7;
       --c-gray-100: #f0f4f8;
       --c-gray-300: #b0c4d8;
       --c-gray-500: #8899b0;
       --c-gray-700: #1e293b;
 
-      --gradient-hero: linear-gradient(135deg, #07090f 0%, #0a1628 50%, #071320 100%);
-      --gradient-card: linear-gradient(145deg, #0d1117 0%, #111827 100%);
-      --gradient-accent: linear-gradient(90deg, #19AED8, #1598C0);
+      --gradient-hero: linear-gradient(135deg, #000000 0%, #0a1628 50%, #071320 100%);
+      --gradient-card: linear-gradient(145deg, #111111 0%, #1a1a1a 100%);
+      --gradient-accent: linear-gradient(90deg, #22B3DF, #1D99BF);
       --gradient-cta: linear-gradient(135deg, #0a1628 0%, #071320 100%);
 
       --r-sm: 8px;
@@ -128,9 +128,9 @@
       --r-lg: 20px;
       --r-xl: 28px;
 
-      --shadow-glow: 0 0 40px rgba(25, 174, 216, 0.2), 0 0 80px rgba(25, 174, 216, 0.08);
+      --shadow-glow: 0 0 40px rgba(34, 179, 223, 0.2), 0 0 80px rgba(34, 179, 223, 0.08);
       --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 255, 255, 0.05) inset;
-      --shadow-btn: 0 0 20px rgba(25, 174, 216, 0.4), 0 4px 16px rgba(0, 0, 0, 0.4);
+      --shadow-btn: 0 0 20px rgba(34, 179, 223, 0.4), 0 4px 16px rgba(0, 0, 0, 0.4);
 
       --font-main: 'Outfit', system-ui, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
@@ -205,8 +205,8 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--c-accent);
-      background: rgba(25, 174, 216, 0.08);
-      border: 1px solid rgba(25, 174, 216, 0.2);
+      background: rgba(34, 179, 223, 0.08);
+      border: 1px solid rgba(34, 179, 223, 0.2);
       padding: 6px 14px;
       border-radius: 100px;
       margin-bottom: 20px;
@@ -295,7 +295,7 @@
 
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 0 30px rgba(25, 174, 216, 0.6), 0 8px 24px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 30px rgba(34, 179, 223, 0.6), 0 8px 24px rgba(0, 0, 0, 0.5);
     }
 
     .btn-primary:active {
@@ -322,7 +322,7 @@
     .btn-secondary:hover {
       border-color: var(--c-accent);
       color: var(--c-accent);
-      background: rgba(25, 174, 216, 0.06);
+      background: rgba(34, 179, 223, 0.06);
       transform: translateY(-2px);
     }
 
@@ -401,7 +401,7 @@
       width: auto;
       border-radius: 10px;
       display: block;
-      filter: drop-shadow(0 0 8px rgba(25, 174, 216, 0.4));
+      filter: drop-shadow(0 0 8px rgba(34, 179, 223, 0.4));
     }
 
     .nav-logo-text {
@@ -489,8 +489,8 @@
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(rgba(25, 174, 216, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(25, 174, 216, 0.04) 1px, transparent 1px);
+        linear-gradient(rgba(34, 179, 223, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34, 179, 223, 0.04) 1px, transparent 1px);
       background-size: 60px 60px;
       z-index: 1;
       mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
@@ -508,7 +508,7 @@
     .hero-orb-1 {
       width: 500px;
       height: 500px;
-      background: radial-gradient(circle, rgba(25, 174, 216, 0.12) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(34, 179, 223, 0.12) 0%, transparent 70%);
       top: -150px;
       right: -100px;
       animation-delay: 0s;
@@ -546,8 +546,8 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(25, 174, 216, 0.08);
-      border: 1px solid rgba(25, 174, 216, 0.25);
+      background: rgba(34, 179, 223, 0.08);
+      border: 1px solid rgba(34, 179, 223, 0.25);
       color: var(--c-accent);
       font-size: 0.82rem;
       font-weight: 600;
@@ -579,7 +579,7 @@
 
     .hero-title .accent-line {
       display: block;
-      background: linear-gradient(90deg, #19AED8 0%, #4BC4E8 50%, #7DD3FC 100%);
+      background: linear-gradient(90deg, #22B3DF 0%, #4DC4E5 50%, #7DD3FC 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -726,7 +726,7 @@
       width: 32px;
       height: 32px;
       border-radius: 8px;
-      background: rgba(25, 174, 216, 0.1);
+      background: rgba(34, 179, 223, 0.1);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -894,8 +894,8 @@
       width: 56px;
       height: 56px;
       border-radius: var(--r-md);
-      background: rgba(25, 174, 216, 0.08);
-      border: 1px solid rgba(25, 174, 216, 0.15);
+      background: rgba(34, 179, 223, 0.08);
+      border: 1px solid rgba(34, 179, 223, 0.15);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -904,9 +904,9 @@
     }
 
     .benefit-card:hover .benefit-icon-wrap {
-      background: rgba(25, 174, 216, 0.15);
-      border-color: rgba(25, 174, 216, 0.35);
-      box-shadow: 0 0 20px rgba(25, 174, 216, 0.2);
+      background: rgba(34, 179, 223, 0.15);
+      border-color: rgba(34, 179, 223, 0.35);
+      box-shadow: 0 0 20px rgba(34, 179, 223, 0.2);
     }
 
     .benefit-icon-wrap svg {
@@ -998,7 +998,7 @@
     }
 
     .service-card.active {
-      border-color: rgba(25, 174, 216, 0.3);
+      border-color: rgba(34, 179, 223, 0.3);
       background: linear-gradient(145deg, #0d1117 0%, #0f1a2e 100%);
     }
 
@@ -1067,7 +1067,7 @@
       right: -40px;
       width: 200px;
       height: 200px;
-      background: radial-gradient(circle, rgba(25, 174, 216, 0.1) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(34, 179, 223, 0.1) 0%, transparent 70%);
       border-radius: 50%;
     }
 
@@ -1075,8 +1075,8 @@
       width: 64px;
       height: 64px;
       border-radius: var(--r-md);
-      background: rgba(25, 174, 216, 0.1);
-      border: 1px solid rgba(25, 174, 216, 0.2);
+      background: rgba(34, 179, 223, 0.1);
+      border: 1px solid rgba(34, 179, 223, 0.2);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1186,7 +1186,7 @@
     }
 
     .col-solution {
-      border: 1px solid rgba(25, 174, 216, 0.2);
+      border: 1px solid rgba(34, 179, 223, 0.2);
       box-shadow: var(--shadow-glow);
     }
 
@@ -1220,8 +1220,8 @@
     }
 
     .badge-solution {
-      background: rgba(25, 174, 216, 0.08);
-      border: 1px solid rgba(25, 174, 216, 0.2);
+      background: rgba(34, 179, 223, 0.08);
+      border: 1px solid rgba(34, 179, 223, 0.2);
       color: var(--c-accent);
     }
 
@@ -1291,7 +1291,7 @@
       font-size: 0.7rem;
       font-weight: 700;
       color: var(--c-accent);
-      box-shadow: 0 0 20px rgba(25, 174, 216, 0.2);
+      box-shadow: 0 0 20px rgba(34, 179, 223, 0.2);
       z-index: 10;
     }
 
@@ -1307,13 +1307,13 @@
 
     .cta-wrapper {
       background: linear-gradient(135deg, #0a1628 0%, #071320 50%, #0a1220 100%);
-      border: 1px solid rgba(25, 174, 216, 0.15);
+      border: 1px solid rgba(34, 179, 223, 0.15);
       border-radius: var(--r-xl);
       padding: 80px 60px;
       text-align: center;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 0 80px rgba(25, 174, 216, 0.08), 0 24px 48px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 80px rgba(34, 179, 223, 0.08), 0 24px 48px rgba(0, 0, 0, 0.5);
     }
 
     .cta-orb-1,
@@ -1327,7 +1327,7 @@
     .cta-orb-1 {
       width: 400px;
       height: 400px;
-      background: radial-gradient(circle, rgba(25, 174, 216, 0.08) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(34, 179, 223, 0.08) 0%, transparent 70%);
       top: -100px;
       left: -100px;
     }
@@ -1455,8 +1455,8 @@
     .contact-form input:focus,
     .contact-form textarea:focus {
       border-color: var(--c-accent);
-      background: rgba(25, 174, 216, 0.06);
-      box-shadow: 0 0 0 3px rgba(25, 174, 216, 0.1);
+      background: rgba(34, 179, 223, 0.06);
+      box-shadow: 0 0 0 3px rgba(34, 179, 223, 0.1);
     }
 
     .contact-form input.has-error,
@@ -1562,7 +1562,7 @@
 
     .back-to-top:hover {
       transform: translateY(-3px);
-      box-shadow: 0 0 30px rgba(25, 174, 216, 0.6), 0 8px 24px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 30px rgba(34, 179, 223, 0.6), 0 8px 24px rgba(0, 0, 0, 0.5);
     }
 
     @media (max-width: 640px) {
@@ -2315,8 +2315,8 @@
           </div>
           <p style="font-size:0.9rem;color:var(--c-gray-300);line-height:1.7;margin-bottom:20px;">"Teníamos redes lentas y sin seguridad. IronLink nos diagnosticó en un día, instaló todo en una semana y ahora operamos sin sustos. Hablan en español, no en código."</p>
           <div style="display:flex;align-items:center;gap:12px;">
-            <div style="width:44px;height:44px;border-radius:50%;background:rgba(25,174,216,0.15);border:1px solid rgba(25,174,216,0.25);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--c-accent);">M</div>
-            <div><div style="font-weight:700;font-size:0.9rem;">María G.</div><div style="font-size:0.75rem;color:var(--c-gray-500);">Despacho Contable, CDMX</div></div>
+            <div style="width:44px;height:44px;border-radius:50%;background:rgba(34,179,223,0.15);border:1px solid rgba(34,179,223,0.25);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--c-accent);">M</div>
+            <div><div style="font-weight:700;font-size:0.9rem;">María G.</div><div style="font-size:0.75rem;color:var(--c-gray-500);">Despacho Contable, Bogotá</div></div>
           </div>
         </div>
 
@@ -2327,7 +2327,7 @@
           </div>
           <p style="font-size:0.9rem;color:var(--c-gray-300);line-height:1.7;margin-bottom:20px;">"Intenté con dos proveedores antes y siempre terminaba igual: promesas y problemas. IronLink fue diferente. Llegaron, vieron, arreglaron. Mi equipo ya trabaja sin interrupciones."</p>
           <div style="display:flex;align-items:center;gap:12px;">
-            <div style="width:44px;height:44px;border-radius:50%;background:rgba(25,174,216,0.15);border:1px solid rgba(25,174,216,0.25);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--c-accent);">C</div>
+            <div style="width:44px;height:44px;border-radius:50%;background:rgba(34,179,223,0.15);border:1px solid rgba(34,179,223,0.25);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--c-accent);">C</div>
             <div><div style="font-weight:700;font-size:0.9rem;">Carlos R.</div><div style="font-size:0.75rem;color:var(--c-gray-500);">Taller Automotriz, Monterrey</div></div>
           </div>
         </div>
@@ -2339,7 +2339,7 @@
           </div>
           <p style="font-size:0.9rem;color:var(--c-gray-300);line-height:1.7;margin-bottom:20px;">"Lo mejor: no necesito entender de tecnología para saber que están haciendo bien su trabajo. La nube, los backups, las actualizaciones… todo funciona. Es un alivio."</p>
           <div style="display:flex;align-items:center;gap:12px;">
-            <div style="width:44px;height:44px;border-radius:50%;background:rgba(25,174,216,0.15);border:1px solid rgba(25,174,216,0.25);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--c-accent);">A</div>
+            <div style="width:44px;height:44px;border-radius:50%;background:rgba(34,179,223,0.15);border:1px solid rgba(34,179,223,0.25);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--c-accent);">A</div>
             <div><div style="font-weight:700;font-size:0.9rem;">Ana L.</div><div style="font-size:0.75rem;color:var(--c-gray-500);">Tienda Online, Guadalajara</div></div>
           </div>
         </div>
@@ -2429,7 +2429,7 @@
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </button>
-              <a href="tel:+525500000000" class="btn-secondary" id="cta-call-btn" style="padding:15px 30px;">
+              <a href="tel:+573001234567" class="btn-secondary" id="cta-call-btn" style="padding:15px 30px;">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path
                     d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
@@ -2489,7 +2489,7 @@
             <span style="font-size:1.2rem;color:var(--c-accent);">▼</span>
           </summary>
           <div style="padding:0 24px 20px;font-size:0.9rem;color:var(--c-gray-300);line-height:1.7;">
-            Ofrecemos ambos. El <strong style="color:var(--c-white);">soporte remoto</strong> es nuestra primera línea de respuesta (rápido, eficiente, sin traslados). Si se requiere atención presencial, agendamos una visita a tu negocio. Cubrimos CDMX y zona metropolitana.
+            Ofrecemos ambos. El <strong style="color:var(--c-white);">soporte remoto</strong> es nuestra primera línea de respuesta (rápido, eficiente, sin traslados). Si se requiere atención presencial, agendamos una visita a tu negocio. Cubrimos Bogotá y principales ciudades del país.
           </div>
         </details>
 
